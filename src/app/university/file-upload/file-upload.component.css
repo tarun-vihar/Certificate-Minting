@@ -1,0 +1,22 @@
+.mt-50 {
+    margin-top:50px;
+}
+
+.mt-5 {
+    margin-top: 5px !important;
+}
+
+.error-message {
+    color: #FF0000;
+    margin: 1rem;
+}
+
+.ta-c {
+    text-align: center;
+}
+
+.d-flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -1,0 +1,88 @@
+<app-student-details
+  [studentItemDetails]="studentDetails"
+  *ngIf="isGenCertBtnClicked"
+></app-student-details>
+<ng-container *ngIf="!isGenCertBtnClicked">
+  <div class="data-selection-option">
+    <mat-radio-group [(ngModel)]="selectedOption">
+      <mat-label class="fw-900">Options to enter student data</mat-label>
+      <mat-radio-button value="formData" color="primary"
+        >Student Form</mat-radio-button
+      >
+      <mat-radio-button value="fileUpload" color="primary"
+        >Upload File</mat-radio-button
+      >
+    </mat-radio-group>
+  </div>
+
+  <div *ngIf="selectedOption === 'fileUpload'">
+    <app-file-upload></app-file-upload>
+  </div>
+  <div
+    *ngIf="selectedOption === 'formData'"
+    class="eaton mat-typography"
+    style="overflow-x: hidden"
+    fxFlexFill
+    cdkScrollable
+  >
+    <mat-toolbar
+      color="primary"
+      class="main-header mat-elevation-z4"
+      [class.hidden]="toggleSearch"
+    >
+      <mat-toolbar-row style="padding: 0 5px">
+        <button mat-icon-button>
+          <mat-icon>menu</mat-icon>
+        </button>
+        <div style="padding: 8px 0 0 10px; flex: 1">
+          <div class="mat-title" style="margin-bottom: 2px">
+            Students Details
+          </div>
+        </div>
+
+        <button mat-icon-button (click)="openSearch()">
+          <mat-icon>search</mat-icon>
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <mat-toolbar
+      class="search-block mat-elevation-z4"
+      [class.active]="toggleSearch"
+    >
+      <mat-toolbar-row style="padding: 0 5px">
+        <button class="search-icon" mat-icon-button disabled>
+          <mat-icon>search</mat-icon>
+        </button>
+        <input
+          class="search-control"
+          type="text"
+          placeholder="Search for Student"
+          [(ngModel)]="searchText"
+          #searchbar
+        />
+        <button mat-button mat-icon-button (click)="searchClose()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <mat-list>
+      <mat-list-item *ngFor="let item of list | filter: searchText">
+        <mat-icon mat-list-avatar style="width: auto">person</mat-icon>
+        <div mat-line>Student_Id: {{ item.id }}</div>
+        <div mat-line>Name: {{ item.name }}</div>
+        <div mat-line>Graduation_Date: {{ item.date_of_graduation }}</div>
+        <div mat-line>Department_Code: {{ item.dept_code }}</div>
+        <button class="btn btn-primary" (click)="gotoStudentDetails(item)">
+          Generate Certificate
+        </button>
+      </mat-list-item>
+      <mat-list-item *ngIf="(list | filter: searchText).length === 0">
+        <mat-icon mat-list-avatar>error</mat-icon>
+        <div mat-line>0 results</div>
+        <div mat-line>No matching records found</div>
+      </mat-list-item>
+    </mat-list>
+  </div>
+</ng-container>
