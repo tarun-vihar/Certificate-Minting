@@ -1,0 +1,9 @@
+<router-outlet *ngIf="isCreateTokenBtnClicked"></router-outlet>
+<ng-container *ngIf="!isCreateTokenBtnClicked">
+  <button class="btn btn-primary m-10">Verify Certificates</button>
+
+  <button routerLink="search" class="btn btn-primary m-10" (click)="genToken()">Create Token</button>
+</ng-container>
+
+
+
