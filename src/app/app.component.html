@@ -5,6 +5,22 @@
   <li routerLinkActive="active">
     <a routerLink="student">Student</a>
   </li>
+
+  <li routerLinkActive="active">
+    <button (click) = "loginContract()"> Login </button>
+  </li>
+
+
+  <li routerLinkActive="active">
+    <button (click) = "addNewUniversity()"> Add New University </button>
+  </li>
+
+  <li routerLinkActive="active">
+    <button (click) = "getAllUniversities()"> Get All University </button>
+  </li>
+
+
+
 </ul>
 
 <router-outlet></router-outlet>
