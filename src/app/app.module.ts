@@ -24,6 +24,11 @@ import { FileUploadComponent } from './university/file-upload/file-upload.compon
 import { HttpClientModule } from '@angular/common/http';
 import { StudentDetailsComponent } from './university/student-details/student-details.component';
 import { CertificateComponent } from './university/student-details/certificate/certificate.component';
+import { LoginComponent } from './login/login.component';
+
+
+import { CookieService } from 'ngx-cookie-service';
+
 
 @NgModule({
   declarations: [
@@ -35,6 +40,7 @@ import { CertificateComponent } from './university/student-details/certificate/c
     FileUploadComponent,
     StudentDetailsComponent,
     CertificateComponent,
+    LoginComponent,
     ],
 
   imports: [
@@ -57,7 +63,7 @@ import { CertificateComponent } from './university/student-details/certificate/c
     BrowserAnimationsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

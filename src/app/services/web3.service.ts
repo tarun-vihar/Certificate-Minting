@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
+import { profile } from 'console';
 import Web3 from 'web3';
 import { AbiItem } from 'web3-utils'
+import { StorageService } from './storage.service';
 
 declare let window: any;
 
@@ -12,6 +14,7 @@ declare let window: any;
 
 export class Web3Service {
 
+  storageService : StorageService;
   
  address =  '0x5FbDB2315678afecb367f032d93F642f64180aa3'
 
@@ -721,8 +724,9 @@ export class Web3Service {
     }
   ]
 
-  constructor() {
+  constructor( storageService: StorageService) {
 
+    this.storageService = storageService
     this.getContract()
    }
 
@@ -737,7 +741,7 @@ export class Web3Service {
 
   counter = 0;
 
-  connectToMetaMask(){
+  async connectToMetaMask(){
 
       let ethereum : any = window['ethereum']
       if (typeof ethereum !== 'undefined') {
@@ -745,16 +749,37 @@ export class Web3Service {
       }
       if (ethereum) {
         this.web3Provider = ethereum;
-        try {
-          // Request account access
-          ethereum.request({ method: 'eth_requestAccounts' }).then( (address:any) => {
-            console.log("Account connected: ", address); // Account address that you had imported
-          });
-        } catch (error) {
-          // User denied account access...
-          console.error("User denied account access");
-        }
 
+        let address;
+      //   try {
+      //     // Request account access
+      //      address = ethereum.request({ method: 'eth_requestAccounts' }).then( (address:any) => {
+      //       console.log("Account connected: ", address); // Account address that you had imported
+      //       return address;
+      //     });
+      //   } catch (error) {
+      //     // User denied account access...
+      //     console.error("User denied account access");
+      //   }
+
+      // return address
+
+
+      try{
+
+        address = await ethereum.request({ method: 'eth_requestAccounts' });
+        this.storageService.setCookie("account" ,address);
+       // profile = await getProfileInformation();
+
+
+        
+      } catch(error){
+
+        console.error("User denied account access");
+
+      }
+
+      return address;
         
       }
     }
@@ -766,15 +791,7 @@ export class Web3Service {
 
 
             
-              // const token = await contract.methods.owner().call();
-              // console.log("token",token)
-
-              // 
-            
-           
-
-
-             
+        
          
 
              let universities = await this.contract.methods.GET_ALL_UNIVERSITIES().call()
