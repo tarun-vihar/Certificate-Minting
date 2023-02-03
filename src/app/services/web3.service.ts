@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { profile } from 'console';
 import Web3 from 'web3';
 import { AbiItem } from 'web3-utils'
+
 import { StorageService } from './storage.service';
 
 declare let window: any;
@@ -14,12 +15,13 @@ declare let window: any;
 
 export class Web3Service {
 
-  storageService : StorageService;
-  
- address =  '0x5FbDB2315678afecb367f032d93F642f64180aa3'
+  storageService: StorageService;
+
+  address = '0x5FbDB2315678afecb367f032d93F642f64180aa3'
 
 
-  abi = [
+  abi = 
+  [
     {
       "inputs": [],
       "stateMutability": "nonpayable",
@@ -724,112 +726,125 @@ export class Web3Service {
     }
   ]
 
-  constructor( storageService: StorageService) {
+  constructor(storageService: StorageService) {
 
     this.storageService = storageService
-    this.getContract()
-   }
+    this.contract = this.getContract()
+  }
 
-  
+
   web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'))
 
-  web3Provider:any = null;
+  web3Provider: any = null;
 
   contract: any = null;
 
-  universities: string[] = ['ASU', 'CSU', 'NYU', 'UC', 'UIC', 'StandFord','Havard']
+  universities: string[] = ['ASU', 'CSU', 'NYU', 'UC', 'UIC', 'StandFord', 'Havard']
 
   counter = 0;
 
-  async connectToMetaMask(){
+  async connectToMetaMask() {
 
-      let ethereum : any = window['ethereum']
-      if (typeof ethereum !== 'undefined') {
-        console.log('MetaMask is installed!');
-      }
-      if (ethereum) {
-        this.web3Provider = ethereum;
+    let ethereum: any = window['ethereum']
+    if (typeof ethereum !== 'undefined') {
+      console.log('MetaMask is installed!');
+    }
+    if (ethereum) {
+      this.web3Provider = ethereum;
 
-        let address;
-      //   try {
-      //     // Request account access
-      //      address = ethereum.request({ method: 'eth_requestAccounts' }).then( (address:any) => {
-      //       console.log("Account connected: ", address); // Account address that you had imported
-      //       return address;
-      //     });
-      //   } catch (error) {
-      //     // User denied account access...
-      //     console.error("User denied account access");
-      //   }
-
-      // return address
-
-
-      try{
+      let address;
+      
+      try {
 
         address = await ethereum.request({ method: 'eth_requestAccounts' });
-        this.storageService.setCookie("account" ,address);
-       // profile = await getProfileInformation();
+        this.storageService.setCookie("account", address);
+        // profile = await getProfileInformation();
 
-
-        
-      } catch(error){
+      } catch (error) {
 
         console.error("User denied account access");
 
       }
 
       return address;
-        
-      }
+
     }
-
-
-
-    public getAllCertificates = async () => {
-      try {
-
-
-            
-        
-         
-
-             let universities = await this.contract.methods.GET_ALL_UNIVERSITIES().call()
-
-             console.log(universities)
-
-          
-      }
-      catch (error:any) {
-          const errorMessage = error.message;
-          console.log(errorMessage)
-     
-      }
   }
 
 
-  getContract(){
+
+  public getAllCertificates = async () => {
+    try {
+      let universities = await this.contract.methods.GET_ALL_UNIVERSITIES().call()
+
+      universities.forEach((element:any) => {
+        console.log(element.uni_name, element.uni_owner, element.whitelisted_accounts)
+      });
+      
+      console.log(universities)
 
 
-         this.contract = new this.web3.eth.Contract(
-          this.abi as unknown as AbiItem [],
-          this.address
-      );
+    }
+    catch (error: any) {
+      const errorMessage = error.message;
+      console.log(errorMessage)
 
-  
+    }
   }
 
 
-  addNewUniversity(){
+  getContract() {
 
-     let account = '0xdD2FD4581271e230360230F9337D5c0430Bf44C0'
-             this.contract.methods.ADD_NEW_UNIVERSITY(this.universities[this.counter++])
-            .send({ from: account, gas: 1000000 })
-            .then(console.log);
+   return new this.web3.eth.Contract(
+      this.abi as unknown as AbiItem[],
+      this.address
+    );
+
   }
 
 
-  async getAllUniversities(){
+  addNewUniversity() {
+
+    let account = '0xdD2FD4581271e230360230F9337D5c0430Bf44C0'
+    this.contract.methods.ADD_NEW_UNIVERSITY(this.universities[this.counter++])
+      .send({ from: account, gas: 1000000 })
+      .then(console.log);
+  }
+
+
+  addWhiteListAddressForUniversity(id: number, accountAddress: string) {
+
+    let account = '0xdD2FD4581271e230360230F9337D5c0430Bf44C0'
+    this.contract.methods.WHITELIST_ADDRESS_FOR_UNIVERSITY(id, accountAddress)
+      .send({ from: account, gas: 1000000 })
+      .then(console.log);
+  }
+
+
+  mintCertificate(){
+
+    const _student_name = "Tarun Student"
+    const _student_address ="0xa0Ee7A142d267C1f36714E4a8F75612F20a79720"
+    const _certificate_uri = "https://bafybeieng6jojeuanytmxizqcbj5vng5jw6puuttndt34nsfbuuwsw3fky.ipfs.w3s.link/"
+    const _cgpa = 4
+    const _course = "Bachelor"
+    const _contact_number = 74736666109
+    const _department ="Computer Science"
+    const _from = 2002002992
+    const _to = 2209993000
+    const _tenure = 4
+    const university_id = 3
+
+    let account = '0xdD2FD4581271e230360230F9337D5c0430Bf44C0'
+    this.contract.methods.GENERATE_CERTIFICATE(_student_name,_student_address,_course, _from, _to,_department,_contact_number,_cgpa,_tenure,_certificate_uri,university_id)
+      .send({ from: account, gas: 1000000 })
+      .then(console.log);
+
+
+  }
+
+
+  async getAllUniversities() {
 
     const regiteredUniversites = await this.contract.methods.GET_ALL_UNIVERSITIES().call();
 
@@ -837,9 +852,32 @@ export class Web3Service {
 
   }
 
- 
+  async getWhitelistedAccounts(id: number) {
 
-  
+    const whiteListAcc = await this.contract.methods.GET_WHITELISTED_ACCOUNTS(id).call();
+
+    console.log(whiteListAcc)
+
+  }
+
+  async getBalanceOf(address: string) {
+
+    const balance = await this.contract.methods.balanceOf(address).call();
+
+    console.log(balance)
+
+  }
+
+  async getMYCertificate() {
+
+    const certificates = await this.contract.methods.getMYCertificate().call();
+
+    console.log(certificates)
+  }
+
+
+
+
 }
 
 

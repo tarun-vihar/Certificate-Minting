@@ -17,15 +17,8 @@ export class AppComponent {
 
   }
 
-  login(){
+ 
 
-  
-  }
-
-  loginContract(){
-    
-    this.w3service.connectToMetaMask();
-  }
 
   addNewUniversity(){
 
@@ -35,6 +28,14 @@ export class AppComponent {
   getAllUniversities(){
 
     this.w3service.getAllCertificates()
+  }
+
+  addCertificate(){
+    this.w3service.mintCertificate()
+  }
+
+  getMyCertificate(){
+    this.w3service.getMYCertificate()
   }
 }
 
