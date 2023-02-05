@@ -16,6 +16,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatCardModule} from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatRadioModule} from '@angular/material/radio';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
@@ -28,6 +29,7 @@ import { LoginComponent } from './login/login.component';
 
 
 import { CookieService } from 'ngx-cookie-service';
+import { SignupComponent } from './signup/signup.component';
 
 
 @NgModule({
@@ -41,6 +43,7 @@ import { CookieService } from 'ngx-cookie-service';
     StudentDetailsComponent,
     CertificateComponent,
     LoginComponent,
+    SignupComponent,
     ],
 
   imports: [
@@ -60,6 +63,7 @@ import { CookieService } from 'ngx-cookie-service';
     MatDatepickerModule,
     MatNativeDateModule,
     MatRadioModule,
+    MatSelectModule ,
     BrowserAnimationsModule,
     HttpClientModule,
   ],

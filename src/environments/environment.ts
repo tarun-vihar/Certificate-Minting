@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  "baseUrl":"https://api.example.com",
   "IPFS_TOKEN" :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDFBNzc2ZDk0NDMyRDhlYTI2MGM4M0E3Q2Y3NDE3QkZhYjUyMzNlRDciLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NjYzMzU3NjA0NzAsIm5hbWUiOiJCbG9ja2NoYWluX0lQRlNfUE9DIn0.7NpSfQa5F9gMqXNbOLfG0lAtPt5VpMADgPGMEutg_94'
 };
 

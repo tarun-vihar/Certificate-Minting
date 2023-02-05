@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SignupComponent } from './signup/signup.component';
 import { StudentComponent } from './student/student.component';
 import { SearchBarComponent } from './university/search-bar/search-bar.component';
 import { StudentDetailsComponent } from './university/student-details/student-details.component';
@@ -13,12 +14,16 @@ const routes: Routes = [
       {
         path:'search',
         component: SearchBarComponent
-      },   
+      }   
     ]
   },
   {
     path: 'student',
-    component: StudentComponent
+    component: StudentComponent,
+  },
+  {
+    path:'signup',
+    component: SignupComponent
   }
 ];
 

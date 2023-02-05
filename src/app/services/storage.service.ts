@@ -1,3 +1,4 @@
+import { ɵparseCookieValue } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -10,18 +11,15 @@ export class StorageService {
   constructor(cookieService: CookieService) { 
 
     this.cookieService = cookieService;
-  }
-
-
-  
+  }  
 
   setCookie(key: string , value: any){
     this.cookieService.set(key, value ); // To Set Cookie
   }
 
-  getCookie(){
+  getCookie(cookieName: string){
 
-    return this.cookieService.get('name');
+    return this.cookieService.get(cookieName);
   }
 
 }
