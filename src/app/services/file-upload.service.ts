@@ -32,5 +32,7 @@ export class FileUploadService {
     return new Web3Storage({ token: this.getAccessToken() })
   }
 
+  
+
 
 }

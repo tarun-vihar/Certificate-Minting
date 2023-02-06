@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { isEmpty } from 'lodash';
+import { ApiService } from '../services/api.service';
+import { Web3Service } from '../services/web3.service';
 
 @Component({
   selector: 'app-student',
@@ -7,9 +10,49 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentComponent implements OnInit {
 
-  constructor() { }
+  errorMessage ='';
 
-  ngOnInit(): void {
+  isSignUpDisplayed: boolean = false;
+
+  constructor(private apiService: ApiService, private w3Service: Web3Service) {
+
   }
+
+  async studentLogin() {
+    const accountAddress = await this.w3Service.connectToMetaMask();
+    if(accountAddress) {
+      this.apiService.studentLogin(accountAddress)
+    .subscribe({
+      next: data => {
+        console.log(data);
+        // if data ={} display no data found error along with signup button
+        if(isEmpty(data)){
+          this.errorMessage = 'No matched data found.'
+          this.isSignUpDisplayed = true;
+
+        }
+    
+      }, 
+      error: error => {
+        console.log("api failed: ", error);
+        this.errorMessage = error?.message;
+        // comment the below one - after api integration
+        this.isSignUpDisplayed = true;
+      },
+      complete: () => {
+        console.log("student login call completed");
+      }
+    }
+    );
+    }
+  }
+
+ ngOnInit(): void {
+   this.studentLogin();
+}
+  
+onClickOfSignUp(){
+  this.isSignUpDisplayed = false;
+}
 
 }
