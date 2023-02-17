@@ -27,7 +27,7 @@ export class AppComponent {
 
   getAllUniversities(){
 
-    this.w3service.getAllCertificates()
+    this.w3service.getAllUniversities()
   }
 
   addCertificate(){

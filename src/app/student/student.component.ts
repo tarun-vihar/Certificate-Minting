@@ -19,9 +19,13 @@ export class StudentComponent implements OnInit {
   }
 
   async studentLogin() {
+    try{
+
+   
     const accountAddress = await this.w3Service.connectToMetaMask();
-    if(accountAddress) {
-      this.apiService.studentLogin(accountAddress)
+    console.log(accountAddress)
+    if( accountAddress && accountAddress.length > 0) {
+      this.apiService.studentLogin(accountAddress[0])
     .subscribe({
       next: data => {
         console.log(data);
@@ -45,6 +49,9 @@ export class StudentComponent implements OnInit {
     }
     );
     }
+
+  } 
+  catch(e){console.log(e)}
   }
 
  ngOnInit(): void {

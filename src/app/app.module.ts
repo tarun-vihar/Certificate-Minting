@@ -30,6 +30,7 @@ import { LoginComponent } from './login/login.component';
 
 import { CookieService } from 'ngx-cookie-service';
 import { SignupComponent } from './signup/signup.component';
+import { CsvUploadComponent } from './csv-upload/csv-upload.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { SignupComponent } from './signup/signup.component';
     CertificateComponent,
     LoginComponent,
     SignupComponent,
+    CsvUploadComponent,
     ],
 
   imports: [

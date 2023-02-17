@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
@@ -6,6 +6,13 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class ApiService {
+
+  
+   headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET'
+  });
 
   constructor(private http:HttpClient ) { }
 
@@ -33,15 +40,15 @@ export class ApiService {
   }
 
   studentLogin(accountAddress: string) {
-    const request = this.http.post(`${environment.baseUrl}/studentProfile`, {
-            account: accountAddress
+    const request = this.http.post(`${environment.baseUrl}/student/authenticate`, {
+             accountAddress
     });
 
     return request;
   }
 
   studentSignUp(studentDetails: any){
-    const request = this.http.post(`${environment.baseUrl}/studentSignUp`,{
+    const request = this.http.post(`${environment.baseUrl}/student/signup`,{
       studentId: studentDetails?.id,
       studentName: studentDetails?.name,
       universityName: studentDetails?.universityName,
@@ -52,7 +59,7 @@ export class ApiService {
   }
 
   getAllUniversities(){
-    const request = this.http.get(`${environment.baseUrl}/getAllUniversities`);
+    const request = this.http.get(`${environment.baseUrl}/university/get-all`);
 
     return request;
   }

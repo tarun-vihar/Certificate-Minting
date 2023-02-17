@@ -54,7 +54,7 @@ export class SignupComponent implements OnInit {
       this.studentDetailsForm = this.fb.group({
         id: ['', Validators.required],
         name:['', Validators.required],
-        universityName: ['', Validators.required]
+        uId: ['', Validators.required]
       });
   } else {
 
