@@ -31,6 +31,7 @@ import { LoginComponent } from './login/login.component';
 import { CookieService } from 'ngx-cookie-service';
 import { SignupComponent } from './signup/signup.component';
 import { CsvUploadComponent } from './csv-upload/csv-upload.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 
 @NgModule({
@@ -68,6 +69,7 @@ import { CsvUploadComponent } from './csv-upload/csv-upload.component';
     MatSelectModule ,
     BrowserAnimationsModule,
     HttpClientModule,
+    AgGridModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent],
