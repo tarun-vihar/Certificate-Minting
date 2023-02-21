@@ -1,0 +1,48 @@
+
+{
+   
+    "university":{
+        "baseUrl":"/university",
+         "routes":[{
+            "path": "/signup",
+            "requestParams":["UniversityRequest : Object"]
+
+         },
+         {
+            "path": "get-all",
+            "requestParams" : []
+         },
+         {
+            "path":"authenticate",
+            "requestParams": ["accountAddress: string(RequestParam)"]
+         }
+        ]
+    },
+
+    "student":{
+
+        "baseUrl":"/",
+        "routes":[{
+           "path": "/student/get-info",
+           "requestParams":["accountAddress: string"]
+
+        },
+        {
+           "path": "/register-students",
+           "requestParams" : ["List<StudentRequest>: []", "action( save | validate)","university_id"]
+        },
+        {
+           "path":"/authenticate",
+           "requestParams": ["StudentRequest: Object", "token|string(requestParam)"]
+        },
+        {
+            "path":"/certificates",
+            "requestParams" : ["List<CertificateRequest>: []", "action( defaultvalue = validate)","university_id"]
+
+        }
+       ]
+    }
+
+
+   
+}
