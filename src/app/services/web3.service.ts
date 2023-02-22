@@ -56,7 +56,9 @@ export class Web3Service {
       try {
 
         address = await ethereum.request({ method: 'eth_requestAccounts' });
-        this.storageService.setCookie("account", address);
+
+        
+        this.storageService.setCookie("account", address[0]);
         // profile = await getProfileInformation();
 
       } catch (error) {
@@ -65,7 +67,7 @@ export class Web3Service {
 
       }
 
-      return address;
+      return address[0];
 
     }
   }

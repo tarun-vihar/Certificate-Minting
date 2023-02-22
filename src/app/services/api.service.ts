@@ -39,9 +39,10 @@ export class ApiService {
     );
   }
 
-  studentLogin(accountAddress: string) {
-    const request = this.http.post(`${environment.baseUrl}/student/authenticate`, {
-             accountAddress
+  studentLogin(accountAddress: string, studentId:string, token: string) {
+    const request = this.http.post(`${environment.baseUrl}/authenticate?token=${token}`, {
+             accountAddress,
+             id: studentId
     });
 
     return request;

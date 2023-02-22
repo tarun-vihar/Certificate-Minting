@@ -3,4 +3,5 @@ interface CerticateRequest extends StudentRequest {
     tenure?: string;
     graduationDate: string;
     issueDate?: string;
+    remarks?: string;
   }
