@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { StorageService } from 'src/app/services/storage.service';
 
@@ -13,7 +13,8 @@ export class SignupComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private apiService: ApiService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private router: Router
   ) {}
 
   universityDetailsForm: any;
@@ -40,5 +41,9 @@ export class SignupComponent implements OnInit {
         console.log('university signup call completed');
       },
     });
+  }
+
+  redirectToLogin() {
+    this.router.navigateByUrl('/auth/login')
   }
 }

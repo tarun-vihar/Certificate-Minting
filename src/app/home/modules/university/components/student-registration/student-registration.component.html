@@ -1,1 +1,7 @@
-<p>student-registration works!</p>
+<div class="container">
+  <div class="student-register-bulk" *ngIf="isBulkUpload">
+    <h1 class="text-center">Student Registration</h1>
+
+    <app-csv-upload (submitFile)="submitStudents($event)"></app-csv-upload>
+  </div>
+</div>

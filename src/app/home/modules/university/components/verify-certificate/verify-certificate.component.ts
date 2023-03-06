@@ -12,4 +12,8 @@ export class VerifyCertificateComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  verifyCertificate() {
+    console.log('coming here')
+  }
+
 }

@@ -30,7 +30,6 @@ import { LoginComponent } from './login/login.component';
 
 import { CookieService } from 'ngx-cookie-service';
 import { SignupComponent } from './signup/signup.component';
-import { CsvUploadComponent } from './csv-upload/csv-upload.component';
 import { AgGridModule } from 'ag-grid-angular';
 
 
@@ -46,7 +45,6 @@ import { AgGridModule } from 'ag-grid-angular';
     CertificateComponent,
     LoginComponent,
     SignupComponent,
-    CsvUploadComponent,
     ],
 
   imports: [
@@ -73,5 +71,6 @@ import { AgGridModule } from 'ag-grid-angular';
   ],
   providers: [CookieService],
   bootstrap: [AppComponent],
+  exports: []
 })
 export class AppModule {}

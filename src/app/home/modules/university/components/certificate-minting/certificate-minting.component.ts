@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { StorageService } from 'src/app/services/storage.service';
+import { UnivesityService } from '../../service/univesity.service';
 
 @Component({
   selector: 'app-certificate-minting',
@@ -6,10 +8,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./certificate-minting.component.css']
 })
 export class CertificateMintingComponent implements OnInit {
-
-  constructor() { }
+  universityId: string = '';
+  responseData: any[] = [];
+  constructor(
+    private universityService: UnivesityService,
+    private storageService: StorageService
+  ) { }
 
   ngOnInit(): void {
+    const userData = this.storageService.getCookie('USER_DATA');
+    this.universityId = userData?.id;
+  }
+
+  onSubmit(event: any) {
+    this.universityService.performCertificateMinting(this.universityId, event).subscribe({
+      next: (data: any) => {
+        this.responseData = data;
+      }
+    })
   }
 
 }

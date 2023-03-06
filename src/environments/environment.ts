@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  "baseUrl":"http://localhost:8080",
+  "baseUrl":"http://822b-2603-8000-9a00-3d4e-a02d-4f9e-1d50-261b.ngrok.io",
   "IPFS_TOKEN" :'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDFBNzc2ZDk0NDMyRDhlYTI2MGM4M0E3Q2Y3NDE3QkZhYjUyMzNlRDciLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NjYzMzU3NjA0NzAsIm5hbWUiOiJCbG9ja2NoYWluX0lQRlNfUE9DIn0.7NpSfQa5F9gMqXNbOLfG0lAtPt5VpMADgPGMEutg_94'
 };
 

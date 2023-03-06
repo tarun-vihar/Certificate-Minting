@@ -17,22 +17,31 @@ export class AuthService {
   }
 
   async univeristyLogin() {
-    const accountAddress = await this.w3Service.connectToMetaMask();
+    // const accountAddress = await this.w3Service.connectToMetaMask();
     return new Promise((resolve, reject) => {
-      this.http
-        .post(`${environment.baseUrl}/university/authenticate`, {
-          account: accountAddress,
-        })
-        .subscribe({
-          next: (data) => {
-            // connecting service
-            this.storageService.setCookie('USER_DATA', data);
-            resolve(data)
-          },
-          error: (error) => {
-            reject(error)
-          },
-        });
+      const userData: any = {
+        id: 1
+      };
+      userData.role = 'university';
+      console.log("🚀 ~ file: auth.service.ts:26 ~ AuthService ~ returnnewPromise ~ userData:", userData)
+      this.storageService.setCookie('USER_DATA', userData);
+      resolve(userData)
+      // this.http
+      //   .post(`${environment.baseUrl}/university/authenticate`, {
+      //     account: accountAddress,
+      //   })
+      //   .subscribe({
+      //     next: (data) => {
+      //       // connecting service
+      //       const userData: any = data;
+      //       userData.role = 'university';
+      //       this.storageService.setCookie('USER_DATA', userData);
+      //       resolve(data)
+      //     },
+      //     error: (error) => {
+      //       reject(error)
+      //     },
+      //   });
     });
   }
 }
