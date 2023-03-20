@@ -14,6 +14,8 @@ export class StorageService {
   }  
 
   setCookie(key: string , value: any){
+    console.log(value); 
+    console.log(JSON.stringify(value));
     this.cookieService.set(key, JSON.stringify(value) ); // To Set Cookie
   }
 

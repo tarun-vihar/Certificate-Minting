@@ -18,10 +18,6 @@ export class UnivesityService {
   }
   performStudentRegister(university_id: any, value: any) {
     return this.http.post(
-      `${environment.baseUrl}/register-students?university_id=${university_id}`,
-      {
-        students: value,
-      }
-    );
+      `${environment.baseUrl}/register-students?university_id=${university_id}`,value);
   }
 }

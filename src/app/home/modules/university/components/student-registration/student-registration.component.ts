@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StorageService } from 'src/app/services/storage.service';
 import { UnivesityService } from '../../service/univesity.service';
 
 @Component({
@@ -9,14 +10,24 @@ import { UnivesityService } from '../../service/univesity.service';
 export class StudentRegistrationComponent implements OnInit {
   isBulkUpload = true;
   constructor(
-    private universityService: UnivesityService
+    private universityService: UnivesityService,
+    private storageService: StorageService
   ) { }
 
   ngOnInit(): void {
   }
 
+
+
+  headersList: string[]  = ['id','studentEmail', 'studentName', 'accountAddress', 'error'];
+  fileName = 'Student_Registration_Template.xlsx';
+
   submitStudents(event: any) {
-    this.universityService.performStudentRegister(1, event).subscribe({
+
+    const userData = this.storageService.getCookie('USER_DATA');
+    console.log(userData, 'userData')
+    const university_id = userData.id;
+    this.universityService.performStudentRegister(university_id, event).subscribe({
       next: (data) => {
         console.log(data, 'data here')
       }

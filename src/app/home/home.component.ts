@@ -9,8 +9,8 @@ import { StorageService } from '../services/storage.service';
 })
 export class HomeComponent implements OnInit {
   ROLE_URLS: any = {
-    university: '/home/university',
-    student: '/home/student'
+    university: 'home/university',
+    student: 'home/student'
   }
 
   constructor(private storageService: StorageService, private router: Router) { }
@@ -22,9 +22,15 @@ export class HomeComponent implements OnInit {
 
   handleRedirect() {
     const userData = this.storageService.getCookie('USER_DATA');
-    if (this.ROLE_URLS[userData.role]) {
-      this.router.navigateByUrl(this.ROLE_URLS[userData.role])
+
+    console.log(userData);
+    if(!userData) {
+      
+     
     }
+    else if (this.ROLE_URLS[userData.role]) {
+      this.router.navigateByUrl(this.ROLE_URLS[userData.role])
+    } 
   }
   // TODO: WRITE REDIRECT LOGIC
 

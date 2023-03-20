@@ -55,7 +55,7 @@ export class Web3Service {
 
       try {
         address = await ethereum.request({ method: 'eth_requestAccounts' });
-        this.storageService.setCookie('account', address[0]);
+        this.storageService.setCookie('ACCOUNT_ADDRESS', address[0]);
       } catch (error) {
         console.error('User denied account access');
       }

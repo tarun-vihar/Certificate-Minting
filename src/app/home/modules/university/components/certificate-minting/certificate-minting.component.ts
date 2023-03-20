@@ -15,11 +15,16 @@ export class CertificateMintingComponent implements OnInit {
     private storageService: StorageService
   ) { }
 
+  selectedOption: string | undefined;
+
   ngOnInit(): void {
     const userData = this.storageService.getCookie('USER_DATA');
     this.universityId = userData?.id;
   }
 
+
+  headersList: string[]  = ['id','studentEmail', 'studentName', 'accountAddress', 'error', 'cgpa', 'tenure', 'graduationDate', 'issueDate', 'remarks', 'certificate_uri', 'program'];
+  fileName = 'Certificate_Template.xlsx';
   onSubmit(event: any) {
     this.universityService.performCertificateMinting(this.universityId, event).subscribe({
       next: (data: any) => {

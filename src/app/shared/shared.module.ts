@@ -16,9 +16,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
 import { CertificateCardComponent } from './certificate-card/certificate-card.component';
+import { DownloadTemplateComponent } from './download-template/download-template.component';
 
 @NgModule({
-  declarations: [CsvUploadComponent, CertificateCardComponent],
+  declarations: [CsvUploadComponent, CertificateCardComponent, DownloadTemplateComponent],
   imports: [
     CommonModule,
     AgGridModule,
@@ -38,6 +39,7 @@ import { CertificateCardComponent } from './certificate-card/certificate-card.co
   ],
   exports: [
     CsvUploadComponent,
+    DownloadTemplateComponent,
     AgGridModule,
     MatFormFieldModule,
     MatIconModule,
