@@ -74,12 +74,7 @@ export class ApiService {
   }
 
   universitySignUp(universityDetails: any) {
-    const request = this.http.post(`${environment.baseUrl}/universitySignUp`, {
-      universityId: universityDetails?.uId,
-      universityName: universityDetails?.uName,
-      universityContact: universityDetails?.uContact,
-      universityAddress: universityDetails?.uAddress
-    })
+    const request = this.http.post(`${environment.baseUrl}/university/signup`, universityDetails );
 
     return request;
   }

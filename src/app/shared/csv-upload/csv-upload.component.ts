@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { WorkBook } from '../models/WorkSheets';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { WorkBook } from '../../models/WorkSheets';
 import * as XLSX from 'xlsx';
 import { AgGridModule } from 'ag-grid-angular';
 import {
@@ -20,6 +20,7 @@ export class CsvUploadComponent implements OnInit {
   showTable = false;
   public domLayout: DomLayoutType = 'autoHeight';
   public defaultColDef: ColDef = {};
+  @Output() submitFile = new EventEmitter<any>();
 
   constructor() {}
 
@@ -70,6 +71,7 @@ export class CsvUploadComponent implements OnInit {
   }
   saveForm() {
     console.log(this.rowData, 'row data edited');
+    this.submitFile.emit(this.rowData);
     // call the api here when the data is ready
   }
 }

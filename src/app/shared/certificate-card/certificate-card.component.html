@@ -1,0 +1,9 @@
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" [src]="certificateDetails?.certificate_uri" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{certificateDetails?.program}}</h5>
+      <p class="card-text">{{certificateDetails?.remarks}}</p>
+      <p class="card-text">{{certificateDetails?.cgpa}}</p>
+      <p class="card-text">{{certificateDetails?.issueDate | date}}</p>
+    </div>
+  </div>

@@ -30,8 +30,8 @@ import { LoginComponent } from './login/login.component';
 
 import { CookieService } from 'ngx-cookie-service';
 import { SignupComponent } from './signup/signup.component';
-import { CsvUploadComponent } from './csv-upload/csv-upload.component';
 import { AgGridModule } from 'ag-grid-angular';
+import { HomeModule } from './home/home.module';
 
 
 @NgModule({
@@ -44,9 +44,7 @@ import { AgGridModule } from 'ag-grid-angular';
     FileUploadComponent,
     StudentDetailsComponent,
     CertificateComponent,
-    LoginComponent,
     SignupComponent,
-    CsvUploadComponent,
     ],
 
   imports: [
@@ -69,9 +67,11 @@ import { AgGridModule } from 'ag-grid-angular';
     MatSelectModule ,
     BrowserAnimationsModule,
     HttpClientModule,
-    AgGridModule
+    AgGridModule, 
+    HomeModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent],
+  exports: []
 })
 export class AppModule {}

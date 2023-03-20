@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="row mt-2">
+    <div class="col-12">
+      <h1 class="text-center">Certificate Minting</h1>
+
+      
+      <app-download-template [fileName] = 'fileName'  [headersList] = 'headersList'>  </app-download-template>
+      <app-csv-upload (submitFile)="onSubmit($event)"></app-csv-upload>
+    </div>
+  </div>
+</div>
+
+
+

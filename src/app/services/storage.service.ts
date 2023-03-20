@@ -14,12 +14,13 @@ export class StorageService {
   }  
 
   setCookie(key: string , value: any){
-    this.cookieService.set(key, value ); // To Set Cookie
+    console.log(value); 
+    console.log(JSON.stringify(value));
+    this.cookieService.set(key, JSON.stringify(value) ); // To Set Cookie
   }
 
   getCookie(cookieName: string){
-
-    return this.cookieService.get(cookieName);
+    return this.cookieService.get(cookieName) ? JSON.parse(this.cookieService.get(cookieName)) : null;
   }
 
 }

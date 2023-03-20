@@ -25,3 +25,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .ag-center-cols-container {
   min-height: 300px !important;
 }
+
+.cursor-pointer {
+    cursor: pointer;
+}
