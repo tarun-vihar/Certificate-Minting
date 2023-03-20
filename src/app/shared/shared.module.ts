@@ -17,9 +17,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
 import { CertificateCardComponent } from './certificate-card/certificate-card.component';
 import { DownloadTemplateComponent } from './download-template/download-template.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
 @NgModule({
-  declarations: [CsvUploadComponent, CertificateCardComponent, DownloadTemplateComponent],
+  declarations: [CsvUploadComponent, CertificateCardComponent, DownloadTemplateComponent, FileUploadComponent],
   imports: [
     CommonModule,
     AgGridModule,
@@ -39,6 +40,7 @@ import { DownloadTemplateComponent } from './download-template/download-template
   ],
   exports: [
     CsvUploadComponent,
+    FileUploadComponent,
     DownloadTemplateComponent,
     AgGridModule,
     MatFormFieldModule,

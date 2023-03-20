@@ -3,12 +3,30 @@
     <div class="col-12">
       <h1 class="text-center">Certificate Minting</h1>
 
-      
-      <app-download-template [fileName] = 'fileName'  [headersList] = 'headersList'>  </app-download-template>
-      <app-csv-upload (submitFile)="onSubmit($event)"></app-csv-upload>
+      <div class="data-selection-option">
+        <mat-radio-group [(ngModel)]="selectedOption">
+          <mat-label class="fw-900">Options to enter student data</mat-label>
+          <mat-radio-button value="formData" color="primary"
+            >Student Form</mat-radio-button
+          >
+          <mat-radio-button value="bulkUpload" color="primary"
+            >Bulk Upload</mat-radio-button
+          >
+        </mat-radio-group>
+      </div>
+
+      <ng-container *ngIf="selectedOption === 'formData'">
+        <app-student-details></app-student-details>
+      </ng-container>
+      <ng-container *ngIf="selectedOption === 'bulkUpload'">
+        <app-download-template
+          [fileName]="fileName"
+          [headersList]="headersList"
+        >
+        </app-download-template>
+
+        <app-csv-upload (submitFile)="onSubmit($event)"></app-csv-upload>
+      </ng-container>
     </div>
   </div>
 </div>
-
-
-

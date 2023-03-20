@@ -30,7 +30,7 @@ import { LoginComponent } from './login/login.component';
 
 import { CookieService } from 'ngx-cookie-service';
 import { SignupComponent } from './signup/signup.component';
-import { AgGridModule } from 'ag-grid-angular';
+// import { AgGridModule } from 'ag-grid-angular';
 import { HomeModule } from './home/home.module';
 
 
@@ -67,11 +67,33 @@ import { HomeModule } from './home/home.module';
     MatSelectModule ,
     BrowserAnimationsModule,
     HttpClientModule,
-    AgGridModule, 
+    // AgGridModule, 
     HomeModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent],
-  exports: []
+  exports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatToolbarModule,
+    MatTabsModule,
+    MatButtonModule,
+    MatInputModule,
+    MatListModule,
+    MatCardModule,
+    MatProgressSpinnerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRadioModule,
+    MatSelectModule ,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    // AgGridModule, 
+    HomeModule
+]
 })
 export class AppModule {}
