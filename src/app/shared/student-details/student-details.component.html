@@ -12,17 +12,29 @@
       </mat-card-header>
       <mat-card-content>
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-12">
             <mat-form-field class="full-width">
-              <input formControlName="id" matInput placeholder="Student Id" />
+              <input formControlName="id" matInput placeholder="Student Id" (blur)="studentDetailsApi($event)"/>
             </mat-form-field>
           </div>
+        </div>
+        <div *ngIf="isStudentDetailsRetrieved" class="row">
           <div class="col-md-6">
             <mat-form-field class="full-width">
               <input
                 formControlName="name"
                 matInput
                 placeholder="Student Name"
+              />
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="full-width">
+              <input
+                type="email"
+                formControlName="email"
+                matInput
+                placeholder="Student Email"
               />
             </mat-form-field>
           </div>
@@ -71,7 +83,6 @@
               />
             </mat-form-field>
           </div>
-
           <div class="col-md-6">
             <mat-form-field class="full-width">
               <input
@@ -83,32 +94,10 @@
               <mat-hint>number of months format (eg: 12)</mat-hint>
             </mat-form-field>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6">
-            <mat-form-field class="full-width">
-              <input
-                formControlName="cgpa"
-                matInput
-                placeholder="Student CGPA"
-              />
-            </mat-form-field>
-          </div>
-
-          <div class="col-md-6">
-            <mat-form-field class="full-width">
-              <input
-                type="email"
-                formControlName="email"
-                matInput
-                placeholder="Student Email"
-              />
-            </mat-form-field>
-          </div>
-        </div>
+        </div> 
         <div class="row">
             <div class="col-md-6">
-              <input id="file"
+              <input
                 type="file"
                 class="file-input"
                 formControlName="file"
@@ -117,6 +106,15 @@
               />
             </div>
             <div class="col-md-6">
+              <mat-form-field class="full-width">
+                <input
+                  formControlName="cgpa"
+                  matInput
+                  placeholder="Student CGPA"
+                />
+              </mat-form-field>
+            </div>
+            <!-- <div class="col-md-6">
                 <mat-form-field class="full-width">
                   <textarea
                     formControlName="remarks"
@@ -124,8 +122,8 @@
                     placeholder="remarks"
                   ></textarea>
                 </mat-form-field>
-              </div>
-          </div>
+              </div> -->
+        </div>
 
         <div class="row">
           <div class="col-md-12">

@@ -12,6 +12,9 @@ export class StudentDetailsComponent implements OnInit {
   @Input("studentItemDetails") studentDetails: any;
 
   isSubmitBtnClicked: boolean = false;
+
+  isStudentDetailsRetrieved: boolean = false;
+
   constructor(
     private fb: FormBuilder,
     private fileUploadService: FileUploadService
@@ -24,8 +27,8 @@ export class StudentDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.profileForm = this.fb.group({
       id: ["", Validators.required],
-      name: ["", Validators.required],
-      email: ["", [Validators.required, Validators.email]],
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       issueDate: ["", Validators.required],
       dateOfGraduation: ["", Validators.required],
       program: ["", Validators.required],
@@ -42,14 +45,30 @@ export class StudentDetailsComponent implements OnInit {
     this.files = event.target.files;
   }
 
-  setFormControlValue(controlName: string, value: string) {
-    console.log("** contains id test: ", this.profileForm.contains("id"));
-    if (this.profileForm.contains(controlName)) {
-      this.profileForm.controls[controlName].setValue(value);
-    } else {
-      const formControl = new FormControl(value);
-      this.profileForm.setControl(controlName, formControl);
+  setFormControlValue(formControlKeyVal: Record<string, string>) {
+    for (const key in formControlKeyVal) {
+      if (this.profileForm.contains(key)) {
+        this.profileForm.controls[key].setValue(formControlKeyVal[key]);
+      } else {
+        const formControl = new FormControl(formControlKeyVal[key]);
+        this.profileForm.setControl(key, formControl);
+      }
     }
+  }
+
+  studentDetailsApi(event: any) {
+    console.log("blur event: ", event);
+    const sid = event.target.value;
+    // api call request success
+
+    this.isStudentDetailsRetrieved = true;
+
+    const details = {
+      name: 'Tarun Vihar',
+      email: 'tarun.vihar@csun.edu.co',
+    };
+
+    this.setFormControlValue(details);
   }
 
   onSubmit() {
@@ -58,10 +77,9 @@ export class StudentDetailsComponent implements OnInit {
     this.fileUploadService.upload(this.files).subscribe((CID: string) => {
       if (!!CID) {
         console.log("shortlink: ", CID);
-        this.setFormControlValue("certificateUri", CID);
+        this.setFormControlValue({ certificateUri: CID });
         console.warn(this.profileForm.value);
       }
     });
   }
-
-  }
+}
