@@ -80,7 +80,7 @@ export class ApiService {
   }
 
   getStudentDetails(studentId: number, universityId: number){
-    return this.http.post(`${environment.baseUrl}/studentDetails`, {
+    return this.http.post(`${environment.baseUrl}/student-details`, {
       studentId: studentId,
       universityId: universityId
     })
