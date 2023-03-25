@@ -1,0 +1,26 @@
+<div class="text-center mt-50">
+    <input
+      class="form-control"
+      type="file"
+      (change)="onChange($event)"
+      multiple
+    />
+  
+    <span class="error-message" *ngIf="!isFileSelected">No File Selected</span>
+    <button *ngIf="!loading" (click)="onUpload()" class="btn btn-success mt-5">Upload</button>
+  </div>
+  
+  <!-- Shareable short link of  uploaded file -->
+  <div class="container text-center jumbotron" *ngIf="shortLink">
+    <h2>Visit Here</h2>
+    <a href="https://{{shortLink}}.ipfs.w3s.link">{{shortLink}}</a>
+  </div>
+  
+  <!--Flag variable is used here-->
+  <div class="container" class="ta-c mt-5" *ngIf="loading">
+    <div class="d-flex-center">
+      <mat-spinner diameter="60"></mat-spinner>
+    </div>
+    <p>please wait...</p>
+  </div>
+  

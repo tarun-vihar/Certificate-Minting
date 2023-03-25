@@ -7,6 +7,7 @@ import { StudentRegistrationComponent } from './components/student-registration/
 import { VerifyCertificateComponent } from './components/verify-certificate/verify-certificate.component';
 import { UniversityComponent } from './university.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -19,7 +20,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
   imports: [
     SharedModule,
     CommonModule,
-    UniversityRoutingModule
+    UniversityRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class UniversityModule { }

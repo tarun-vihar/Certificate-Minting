@@ -1,0 +1,10 @@
+.data-selection-option {
+    margin:3rem 2rem 1rem 2rem;
+  }
+  mat-radio-button {
+    margin: 1rem;
+  }
+  .fw-900 {
+    font-weight:900
+  }
+  

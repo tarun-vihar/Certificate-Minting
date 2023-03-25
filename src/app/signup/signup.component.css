@@ -1,8 +1,15 @@
 .student-details-form {
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 .university-registration-form {
     height: 100vh;
+}
+
+.error-message {
+    color: #FF0000;
+    margin: 1rem;
+    text-align: center;
+    padding: 1rem;
+    background: antiquewhite;
 }

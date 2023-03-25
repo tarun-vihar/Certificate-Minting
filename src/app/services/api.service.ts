@@ -79,7 +79,12 @@ export class ApiService {
     return request;
   }
 
- 
+  getStudentDetails(studentId: number, universityId: number){
+    return this.http.post(`${environment.baseUrl}/student-details`, {
+      studentId: studentId,
+      universityId: universityId
+    })
+  }
 
 
 }
