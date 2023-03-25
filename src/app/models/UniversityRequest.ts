@@ -1,8 +1,7 @@
 interface UniversityRequest {
-    uId?: string;
-    uName: string;
-    uAddress?: string;
-    uContactNumber? : number;
-    accountAddress : string;
-    uEmail? : string
-  }
+  universityName: string;
+  universityEmail: string;
+  universityWalletAddress : string;
+  universityCode?: string;
+  universityAddress?: string; 
+}

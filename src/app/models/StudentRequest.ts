@@ -1,8 +1,10 @@
 interface StudentRequest {
-  id: string;
+  studentId: string;
   studentEmail: string;
   studentName: string;
-  uID? : number;
-  accountAddress? : string;
+  program: string;
+  department: string;
+  studentWalletAddress? : string;
+  universityName: string;
   error? : string
 }

@@ -1,24 +1,33 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
+import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { FormBuilder, FormControl } from "@angular/forms";
 import { Validators } from "@angular/forms";
+import { Subscription } from "rxjs";
+import { ApiService } from "src/app/services/api.service";
 import { FileUploadService } from "src/app/services/file-upload.service";
+import { StorageService } from "src/app/services/storage.service";
 
 @Component({
   selector: "app-student-details",
   templateUrl: "./student-details.component.html",
   styleUrls: ["./student-details.component.css"],
 })
-export class StudentDetailsComponent implements OnInit {
+export class StudentDetailsComponent implements OnInit, OnDestroy {
   @Input("studentItemDetails") studentDetails: any;
 
   isSubmitBtnClicked: boolean = false;
 
   isStudentDetailsRetrieved: boolean = false;
 
+  studentDetailsSubscription: Subscription | undefined;
+
   constructor(
     private fb: FormBuilder,
+    private storageService: StorageService,
+    private apiService: ApiService,
     private fileUploadService: FileUploadService
-  ) {}
+  ) {
+
+  }
 
   profileForm: any;
 
@@ -40,6 +49,10 @@ export class StudentDetailsComponent implements OnInit {
     });
   }
 
+  ngOnDestroy(): void {
+      this.studentDetailsSubscription?.unsubscribe();
+  }
+
   onFileSelected(event: any) {
     console.log("** event: ", event);
     this.files = event.target.files;
@@ -58,17 +71,30 @@ export class StudentDetailsComponent implements OnInit {
 
   studentDetailsApi(event: any) {
     console.log("blur event: ", event);
-    const sid = event.target.value;
-    // api call request success
+    const studentId = event.target.value;
 
-    this.isStudentDetailsRetrieved = true;
+    const userData = this.storageService.getCookie('USER_DATA');
+    const universityId = userData.id;
 
-    const details = {
-      name: 'Tarun Vihar',
-      email: 'tarun.vihar@csun.edu.co',
+    this.studentDetailsSubscription = this.apiService.getStudentDetails(studentId, universityId).subscribe({
+      next: (data: any) =>{
+      this.isStudentDetailsRetrieved = true;
+
+      const details = {
+      name: data?.name || 'Tarun Vihar',
+      email: data?.email || 'tarun.vihar@csun.edu.co',
     };
 
     this.setFormControlValue(details);
+      },
+      error: err =>{
+        this.isStudentDetailsRetrieved = false;
+      },
+      complete : ()=>{
+        console.log('student-details call completed!');
+      }
+    });
+    
   }
 
   onSubmit() {
@@ -77,7 +103,7 @@ export class StudentDetailsComponent implements OnInit {
     this.fileUploadService.upload(this.files).subscribe((CID: string) => {
       if (!!CID) {
         console.log("shortlink: ", CID);
-        this.setFormControlValue({ certificateUri: CID });
+        this.setFormControlValue({ certificateUri: `https://${CID}.ipfs.w3s.link` });
         console.warn(this.profileForm.value);
       }
     });

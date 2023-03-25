@@ -58,6 +58,8 @@ export class Web3Service {
         this.storageService.setCookie('ACCOUNT_ADDRESS', address[0]);
       } catch (error) {
         console.error('User denied account access');
+        throw Error('User denied account access');
+       
       }
 
       return address[0];
@@ -101,13 +103,13 @@ export class Web3Service {
     let account =
       this.storageService.getCookie('account') ||
       '0xdD2FD4581271e230360230F9337D5c0430Bf44C0';
-    let currentUniversity = this.universities[this.counter++];
-    console.log(currentUniversity);
+    // let currentUniversity = this.universities[this.counter++];
+    // console.log(currentUniversity);
     console.log(this.contract);
     const contract = await this.contract;
     console.log(contract);
-    contract.methods
-      .ADD_NEW_UNIVERSITY(currentUniversity)
+    return contract.methods
+      .ADD_NEW_UNIVERSITY()
       .send({ from: account, gas: 1000000 })
       .then(console.log);
   }
