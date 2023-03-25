@@ -19,12 +19,12 @@ export class StudentRegistrationComponent implements OnInit {
 
 
 
-  headersList: string[]  = ['id','studentEmail', 'studentName', 'accountAddress', 'error'];
+  headersList: string[]  = ['studentId','studentEmail','program','department' ,'studentName', 'studentWalletAddress', 'error'];
   fileName = 'Student_Registration_Template.xlsx';
 
   submitStudents(event: any) {
 
-    const userData = this.storageService.getCookie('USER_DATA');
+    const userData = JSON.parse(this.storageService.getCookie('USER_DATA'));
     console.log(userData, 'userData')
     const university_id = userData.id;
     this.universityService.performStudentRegister(university_id, event).subscribe({

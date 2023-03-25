@@ -5,6 +5,6 @@ interface StudentRequest {
   program: string;
   department: string;
   studentWalletAddress? : string;
-  universityName: string;
+  universityId: number;
   error? : string
 }
