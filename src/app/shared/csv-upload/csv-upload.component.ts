@@ -63,8 +63,13 @@ export class CsvUploadComponent implements OnInit {
 
   convertWorkBookToJson(workbook: XLSX.WorkBook) {
     const result: any = [];
+    const options = {
+      raw:false,
+      dateNF: 'yyyy-mm-dd'
+    };
+
     workbook.SheetNames.forEach((sheetName: string) => {
-      const roa = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
+      const roa = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], options);
       if (roa.length) result.push(...roa);
     });
     return result;
