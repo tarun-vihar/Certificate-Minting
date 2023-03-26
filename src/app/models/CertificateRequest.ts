@@ -1,4 +1,4 @@
-interface CerticateRequest extends StudentRequest  {
+interface CerticateRequest   {
 
   studentInfo: StudentRequest;
   cgpa: string;
