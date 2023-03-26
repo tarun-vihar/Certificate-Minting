@@ -39,10 +39,11 @@ export class ApiService {
     );
   }
 
-  studentLogin(accountAddress: string, studentId:string, token: string) {
+  authenicateStudent(studentWalletAddress: string, studentId:string, token: string, universityId: number) {
     const request = this.http.post(`${environment.baseUrl}/authenticate?token=${token}`, {
-             accountAddress,
-             id: studentId
+             studentWalletAddress,
+             studentId,
+             universityId
     });
 
     return request;

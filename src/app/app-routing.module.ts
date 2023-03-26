@@ -8,6 +8,7 @@ import { StudentComponent } from './student/student.component';
 import { SearchBarComponent } from './university/search-bar/search-bar.component';
 import { StudentDetailsComponent } from './university/student-details/student-details.component';
 import { UniversityComponent } from './university/university.component';
+import { VerifyComponent } from './verify/verify.component';
 
 const routes: Routes = [
   {
@@ -59,7 +60,7 @@ const routes: Routes = [
   },
   {
     path: 'verify',
-    component: LoginComponent,
+    component: VerifyComponent,
   },
 ];
 

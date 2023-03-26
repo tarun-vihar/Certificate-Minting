@@ -32,6 +32,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { SignupComponent } from './signup/signup.component';
 // import { AgGridModule } from 'ag-grid-angular';
 import { HomeModule } from './home/home.module';
+import { VerifyComponent } from './verify/verify.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { HomeModule } from './home/home.module';
     StudentDetailsComponent,
     CertificateComponent,
     SignupComponent,
+    VerifyComponent,
     ],
 
   imports: [

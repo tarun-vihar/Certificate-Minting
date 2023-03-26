@@ -22,7 +22,7 @@ export class AppComponent {
 
   addNewUniversity(){
 
-    this.w3service.addNewUniversity()
+   // this.w3service.addNewUniversity()
   }
 
   getAllUniversities(){
