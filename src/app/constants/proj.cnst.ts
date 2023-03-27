@@ -1,6 +1,6 @@
 export const AUTH_COOKIE_KEY = 'user_info';
 
-export const DEFAULT_ROUTE_FOR_ROLE = {
+export const DEFAULT_ROUTE_FOR_ROLE: any = {
     university: ['', 'home', 'university'],
     student: ['', 'home', 'student']
 }

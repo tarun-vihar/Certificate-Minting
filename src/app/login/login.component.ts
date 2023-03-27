@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DEFAULT_ROUTE_FOR_ROLE } from '../constants/proj.cnst';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
     .universityLogin()
     .then((data) => {
       if (data) {
-          this.router.navigateByUrl('/home');
+          this.router.navigate(DEFAULT_ROUTE_FOR_ROLE.university);
         }
       })
       .catch((error) => {
@@ -35,8 +36,8 @@ export class LoginComponent implements OnInit {
     this.authService
       .studentLogin()
       .then((data) => {
-        if (data) {
-            this.router.navigateByUrl('/home');
+          if (data) {
+            this.router.navigate(DEFAULT_ROUTE_FOR_ROLE.student);
           }
         })
         .catch((error) => {

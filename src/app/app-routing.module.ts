@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './gurads/auth.guard';
+import { GuestGuard } from './gurads/guest.guard';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
@@ -22,11 +23,12 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'errors',
+    path: 'error',
     loadChildren: () => import('./errors/errors.module').then((m) => m.ErrorsModule)
   },
   {
     path: 'auth',
+    canActivate: [GuestGuard],
     children: [
       {
         path: '',
