@@ -18,9 +18,12 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    //loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
-    component: HomeComponent,
+    loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
     canActivate: [AuthGuard],
+  },
+  {
+    path: 'errors',
+    loadChildren: () => import('./errors/errors.module').then((m) => m.ErrorsModule)
   },
   {
     path: 'auth',
@@ -40,24 +43,24 @@ const routes: Routes = [
       },
     ],
   },
-  {
-    path: 'university',
-    component: UniversityComponent,
-    children: [
-      {
-        path: 'search',
-        component: SearchBarComponent,
-      },
-    ],
-  },
-  {
-    path: 'student',
-    component: StudentComponent,
-  },
-  {
-    path: 'signup',
-    component: SignupComponent,
-  },
+  // {
+  //   path: 'university',
+  //   component: UniversityComponent,
+  //   children: [
+  //     {
+  //       path: 'search',
+  //       component: SearchBarComponent,
+  //     },
+  //   ],
+  // },
+  // {
+  //   path: 'student',
+  //   component: StudentComponent,
+  // },
+  // {
+  //   path: 'signup',
+  //   component: SignupComponent,
+  // },
   {
     path: 'verify',
     component: VerifyComponent,

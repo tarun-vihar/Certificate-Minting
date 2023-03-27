@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   constructor(private storageService: StorageService, private router: Router) { }
 
   ngOnInit(): void {
-    this.handleRedirect();
+    // this.handleRedirect();
   }
 
 
@@ -25,8 +25,6 @@ export class HomeComponent implements OnInit {
 
     console.log(userData);
     if(!userData) {
-      
-     
     }
     else if (this.ROLE_URLS[userData.role]) {
       this.router.navigateByUrl(this.ROLE_URLS[userData.role])
