@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AUTH_COOKIE_KEY } from '../constants/proj.cnst';
 import { StorageService } from '../services/storage.service';
 
 @Component({
@@ -17,6 +18,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     // this.handleRedirect();
+  }
+
+  logout() {
+    console.log("logging out");
+    this.storageService.removeCookie(AUTH_COOKIE_KEY);
+    this.router.navigate(['', 'auth', 'login']);
   }
 
 

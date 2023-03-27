@@ -23,4 +23,8 @@ export class StorageService {
     return this.cookieService.get(cookieName) ? JSON.parse(this.cookieService.get(cookieName)) : null;
   }
 
+  removeCookie(cookieName: string) {
+    this.cookieService.delete(cookieName);
+  }
+
 }
