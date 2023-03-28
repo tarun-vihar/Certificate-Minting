@@ -2,7 +2,7 @@
   <div class="student-register-bulk" *ngIf="isBulkUpload">
     <h1 class="text-center">Student Registration</h1>
 
-    <app-download-template [fileName] = 'fileName'  [headersList] = 'headersList'>  </app-download-template>
+    <app-download-template [fileName] = 'fileName'  [headersList] = 'headersList' [compnentName] = 'compnentName'>  </app-download-template>
 
     <app-csv-upload (submitFile)="submitStudents($event)"></app-csv-upload>
   </div>

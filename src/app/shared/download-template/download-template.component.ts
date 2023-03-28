@@ -15,6 +15,7 @@ export class DownloadTemplateComponent implements OnInit {
 
   @Input() headersList: string[] = [];
   @Input() fileName: string = '';
+  @Input() compnentName: string = '';
   
 
 

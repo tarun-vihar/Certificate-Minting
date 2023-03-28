@@ -8,12 +8,12 @@ export const DEFAULT_ROUTE_FOR_ROLE: any = {
 // MOCK DATA
 export const MOCK_UNIVERSITY_LOGIN_RESPONSE = {
     role: 'university',
-    name: 'Tarun',
+    name: 'CSUN',
     university: ''
 }
 export const MOCK_STUDENT_LOGIN_RESPONSE = {
     role: 'student',
-    name: 'Madhu'
+    name: 'Tarun'
 }
 export const MOCK_CERTIFICATES = [
 ]

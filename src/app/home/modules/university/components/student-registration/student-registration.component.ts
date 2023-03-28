@@ -21,7 +21,8 @@ export class StudentRegistrationComponent implements OnInit {
 
   headersList: string[]  = ['studentId','studentEmail','program','department' ,'studentName', 'studentWalletAddress', 'error'];
   fileName = 'Student_Registration_Template.xlsx';
-
+  compnentName = 'Student Registration';
+  
   submitStudents(event: any) {
 
     const userData = JSON.parse(this.storageService.getCookie('USER_DATA'));

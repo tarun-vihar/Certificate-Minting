@@ -25,6 +25,7 @@ export class CertificateMintingComponent implements OnInit {
 
   headersList: string[]  = ['studentId', 'cgpa', 'tenure', 'graduationDate', 'issueDate', 'remarks', 'certificate_uri', 'program'];
   fileName = 'Certificate_Template.xlsx';
+  compnentName = 'Student Certificate ';
   onSubmit(event: any) {
     this.universityService.performCertificateMinting(this.universityId, event).subscribe({
       next: (data: any) => {
