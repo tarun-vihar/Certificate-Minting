@@ -35,13 +35,13 @@ export class StudentDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.profileForm = this.fb.group({
-      id: ["", Validators.required],
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      studentId: ["", Validators.required],
+      studentName: [''],
+      studentEmail: [''],
       issueDate: ["", Validators.required],
       dateOfGraduation: ["", Validators.required],
-      program: ["", Validators.required],
-      gender: [""],
+      program: [''],
+      department: [''],
       cgpa: ["", Validators.required],
       tenure: ["", Validators.required],
       file: ["", Validators.required],
@@ -74,21 +74,25 @@ export class StudentDetailsComponent implements OnInit, OnDestroy {
     const studentId = event.target.value;
 
     const userData = this.storageService.getCookie('USER_DATA');
-    const universityId = userData.id;
+    const universityId = userData?.id;
 
     this.studentDetailsSubscription = this.apiService.getStudentDetails(studentId, universityId).subscribe({
       next: (data: any) =>{
       this.isStudentDetailsRetrieved = true;
 
+      const {studentName, studentEmail, program, department} = data;
       const details = {
-      name: data?.name || 'Tarun Vihar',
-      email: data?.email || 'tarun.vihar@csun.edu.co',
+      studentName,
+      studentEmail,
+      program,
+      department,
     };
 
     this.setFormControlValue(details);
       },
       error: err =>{
         this.isStudentDetailsRetrieved = false;
+        console.log('student api details failed', err)
       },
       complete : ()=>{
         console.log('student-details call completed!');
