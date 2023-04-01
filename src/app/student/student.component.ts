@@ -18,44 +18,9 @@ export class StudentComponent implements OnInit {
 
   }
 
-  async studentLogin() {
-    try{
-
-   
-    const accountAddress = await this.w3Service.connectToMetaMask();
-    console.log(accountAddress)
-    if( accountAddress && accountAddress.length > 0) {
-      this.apiService.studentLogin(accountAddress[0],'','')
-    .subscribe({
-      next: data => {
-        console.log(data);
-        // if data ={} display no data found error along with signup button
-        if(isEmpty(data)){
-          this.errorMessage = 'No matched data found.'
-          this.isSignUpDisplayed = true;
-
-        }
-    
-      }, 
-      error: error => {
-        console.log("api failed: ", error);
-        this.errorMessage = error?.message;
-        // comment the below one - after api integration
-        this.isSignUpDisplayed = true;
-      },
-      complete: () => {
-        console.log("student login call completed");
-      }
-    }
-    );
-    }
-
-  } 
-  catch(e){console.log(e)}
-  }
 
  ngOnInit(): void {
-   this.studentLogin();
+   
 }
   
 onClickOfSignUp(){

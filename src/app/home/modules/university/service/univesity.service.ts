@@ -8,12 +8,10 @@ import { environment } from 'src/environments/environment';
 export class UnivesityService {
   constructor(private http: HttpClient) {}
 
-  performCertificateMinting(university_id: any = 1, value: any) {
+  performCertificateMinting(university_id: any = 5, value: any) {
     return this.http.post(
-      `${environment.baseUrl}/certificates?university_id=${university_id}`,
-      {
-        certificates: value,
-      }
+      `${environment.baseUrl}/certificates?university_id=${university_id}`, value
+      
     );
   }
   performStudentRegister(university_id: any, value: any) {
