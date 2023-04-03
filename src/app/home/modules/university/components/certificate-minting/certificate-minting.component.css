@@ -8,3 +8,7 @@
     font-weight:900
   }
   
+
+.btn:disabled {
+  cursor: not-allowed;
+}

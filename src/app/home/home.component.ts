@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AUTH_COOKIE_KEY } from '../constants/proj.cnst';
+import { AUTH_COOKIE_KEY, NAVIGATION } from '../constants/proj.cnst';
+import { AuthService } from '../services/auth.service';
 import { StorageService } from '../services/storage.service';
 
 @Component({
@@ -13,11 +14,25 @@ export class HomeComponent implements OnInit {
     university: 'home/university',
     student: 'home/student'
   }
+  loggedInuserInfo: any = null;
+  navigation: any[] = []
 
-  constructor(private storageService: StorageService, private router: Router) { }
+  constructor(
+    private storageService: StorageService, 
+    private router: Router,
+    private authSrv: AuthService
+  ) { }
 
   ngOnInit(): void {
     // this.handleRedirect();
+    this.loadUserInfo()
+  }
+
+  loadUserInfo() {
+    this.loggedInuserInfo = this.authSrv.getLoggedInUserInfo()
+    console.log("loggedInuserInfo:: ", this.loggedInuserInfo);
+    // Render navigations links as per the logged in user role.
+    this.navigation = NAVIGATION.filter(link => link.show.indexOf(this.loggedInuserInfo.role) !== -1);
   }
 
   logout() {

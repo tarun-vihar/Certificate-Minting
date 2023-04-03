@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>Bulk upload certificats</h2>
+<mat-dialog-content>
+  <!-- TODO: update message. -->
+  <p>You can also <span class="text-primary" (click)="downloadTemplate()">download</span> the excel with the format required for import</p>
+  <input type="file" #file class="d-none" (change)="onFileChange($event)">
+  <div class="file-wrapper" (click)="chooseFile()">
+    <p class="text-secondary m-0" *ngIf="!selectedFile">
+      Choose file and upload
+    </p>
+    <p class="text-secondary m-0" *ngIf="!!selectedFile">
+      {{ selectedFile.name }}
+    </p>
+  </div>
+  <!-- <app-csv-upload (submitFile)="onSubmit()"></app-csv-upload> -->
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [disabled]="!validForm" (click)="upload()" cdkFocusInitial>Upload</button>
+</mat-dialog-actions>

@@ -5,6 +5,34 @@ export const DEFAULT_ROUTE_FOR_ROLE: any = {
     student: ['', 'home', 'student']
 }
 
+export const NAVIGATION = [
+    {
+        label: 'Certificate Minting', 
+        url: ['', 'home', 'university', 'certificate-minting'],
+        show: ['university']
+    },
+    {
+        label: 'Student Registration',
+        url: ['', 'home', 'university', 'student-registration'],
+        show: ['university']
+    },
+    {
+        label: 'Staff Registration',
+        url: ['', 'home', 'university', 'staff-registration'],
+        show: ['university']
+    },
+    {
+        label: 'Verify Certificates',
+        url: ['', 'home', 'university', 'verify-certificate'],
+        show: ['university']
+    },
+    {
+        label: 'View Certificates',
+        url: ['', 'home', 'student', 'certificates'],
+        show: ['student']
+    }
+]
+
 // MOCK DATA
 export const MOCK_UNIVERSITY_LOGIN_RESPONSE = {
     role: 'university',
