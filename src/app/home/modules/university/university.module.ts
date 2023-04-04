@@ -8,7 +8,9 @@ import { VerifyCertificateComponent } from './components/verify-certificate/veri
 import { UniversityComponent } from './university.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { BulkUploadComponent } from './components/bulk-upload/bulk-upload.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [
@@ -16,13 +18,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     StudentRegistrationComponent,
     VerifyCertificateComponent,
     UniversityComponent,
+    BulkUploadComponent,
   ],
   imports: [
     SharedModule,
     CommonModule,
     UniversityRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule,
+    AgGridModule
   ]
 })
 export class UniversityModule { }

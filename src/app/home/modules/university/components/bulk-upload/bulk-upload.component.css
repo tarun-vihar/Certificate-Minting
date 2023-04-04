@@ -1,0 +1,8 @@
+.file-wrapper {
+    width: 100%;
+    border: 1px dashed #ddd;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
