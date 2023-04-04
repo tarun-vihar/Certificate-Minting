@@ -108,10 +108,10 @@ export class Web3Service {
     console.log(this.contract);
     const contract = await this.contract;
     console.log(contract);
-    return contract.methods
-      .ADD_NEW_UNIVERSITY(uni_name)
-      .send({ from: account, gas: 1000000 })
-      .then(console.log);
+    // return contract.methods
+    //   .ADD_NEW_UNIVERSITY(uni_name)
+    //   .send({ from: account, gas: 1000000 })
+    //   .then(console.log);
   }
 
   addWhiteListAddressForUniversity(id: number, accountAddress: string) {

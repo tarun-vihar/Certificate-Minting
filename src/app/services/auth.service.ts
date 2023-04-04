@@ -24,7 +24,7 @@ export class AuthService {
 
       this.http
         .post(`${environment.baseUrl}/university/authenticate`, {
-          accountAddress: accountAddress,
+          universityWalletAddress: accountAddress
         })
         .subscribe({
           next: (data) => {
