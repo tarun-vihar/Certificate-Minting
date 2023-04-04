@@ -56,7 +56,7 @@ export class SignupComponent implements OnInit {
         this.isUniversityRegistrationSuccess = true;
         // this.web3Service.addNewUniversity()
 
-        this.web3Service.addNewUniversity(data.universityName)
+        this.web3Service.addNewUniversity(data.universityName, data.universityCode)
         const userData:any = data;
         userData["role"] = "university";  
         this.storageService.setCookie('USER_DATA', JSON.stringify(userData));

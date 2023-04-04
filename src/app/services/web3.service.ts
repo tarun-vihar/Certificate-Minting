@@ -99,7 +99,7 @@ export class Web3Service {
     );
   }
 
-  async addNewUniversity(uni_name:string) {
+  async addNewUniversity(uni_name:string, university_id:number) {
     let account =
       this.storageService.getCookie('account') ||
       '0xdD2FD4581271e230360230F9337D5c0430Bf44C0';
@@ -109,7 +109,7 @@ export class Web3Service {
     const contract = await this.contract;
     console.log(contract);
     return contract.methods
-      .ADD_NEW_UNIVERSITY(uni_name)
+      .ADD_NEW_UNIVERSITY(uni_name, university_id)
       .send({ from: account, gas: 1000000 })
       .then(console.log);
   }

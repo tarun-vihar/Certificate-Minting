@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { Component, OnInit, ViewChild, ElementRef, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import * as XLSX from 'xlsx';
 
 @Component({
@@ -15,7 +15,8 @@ export class BulkUploadComponent implements OnInit {
   validForm: boolean = false;
 
   constructor(
-    public dialogRef: MatDialogRef<BulkUploadComponent>
+    public dialogRef: MatDialogRef<BulkUploadComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
   ngOnInit(): void {
@@ -58,7 +59,11 @@ export class BulkUploadComponent implements OnInit {
   }
 
   downloadTemplate() {
-    console.log('downloadTemplate');
+    
+    const workbook = XLSX.utils.book_new();
+    const worksheet = XLSX.utils.aoa_to_sheet([this.data.headers]);
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+    XLSX.writeFile(workbook, this.data.fileName);
   }
 
 }

@@ -30,10 +30,13 @@ export class AuthService {
   }
 
   // MOCK Service
-  universityLogin() {
+  async universityLogin() {
     // Get address.
-    const address = this.walletSrv.getWalletId();
+    const address = await this.walletSrv.getWalletId();
 
+    console.log(address);
+
+    
     return new Promise((resolve, reject) => {
       // Integrate API Call
       const userInfo = MOCK_UNIVERSITY_LOGIN_RESPONSE;
