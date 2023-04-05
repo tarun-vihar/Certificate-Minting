@@ -38,17 +38,38 @@ export class AuthService {
 
     
     return new Promise((resolve, reject) => {
-      // Integrate API Call
-      const userInfo = MOCK_UNIVERSITY_LOGIN_RESPONSE;
 
-      // Store the logged in user info in cookie.
-      this.storageService.setCookie(AUTH_COOKIE_KEY, {...userInfo, address});
 
-      // return response.
-      resolve(userInfo)
+      this.http
+      .post(`${environment.baseUrl}/university/authenticate`, {
+        universityWalletAddress: address,
+      })
+      .subscribe({
+        next: (data) => {
+          // connecting service
+          const userData: any = data;
+        
+          console.log(userData);
+          if(!!userData) {
+            userData.role = 'university';
+            this.storageService.setCookie(AUTH_COOKIE_KEY, userData);
+          }
+         
+          resolve(data)
+        },
+        error: (error) => {
+          reject(error)
+        },
+      });
+
+
+
 
       // Add error handling also along with api integration.
     })
+
+
+
   }
 
 

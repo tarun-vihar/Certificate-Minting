@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AUTH_COOKIE_KEY } from 'src/app/constants/proj.cnst';
 import { StorageService } from 'src/app/services/storage.service';
 import { UnivesityService } from '../../service/univesity.service';
 
@@ -25,7 +26,7 @@ export class StudentRegistrationComponent implements OnInit {
   
   submitStudents(event: any) {
 
-    const userData = JSON.parse(this.storageService.getCookie('USER_DATA'));
+    const userData = JSON.parse(this.storageService.getCookie(AUTH_COOKIE_KEY));
     console.log(userData, 'userData')
     const university_id = userData.id;
     this.universityService.performStudentRegister(university_id, event).subscribe({

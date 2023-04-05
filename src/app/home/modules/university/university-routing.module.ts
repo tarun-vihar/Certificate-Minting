@@ -19,6 +19,10 @@ const routes: Routes = [
         component: StudentRegistrationComponent,
       },
       {
+        path: 'staff-registration',
+        component: StudentRegistrationComponent,
+      },
+      {
         path: 'verify-certificate',
         component: VerifyCertificateComponent,
       },

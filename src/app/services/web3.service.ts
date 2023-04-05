@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { profile } from 'console';
+import { removeAllListeners } from 'process';
 import Web3 from 'web3';
 import { AbiItem } from 'web3-utils';
 import { ABI_CONFIG } from '../constants/abi.cnst';
 import { BLOCK_CHAIN_ADDRESS } from '../constants/block-chain-config';
+import { DEFAULT_STUDENT_ACCOUNT, DEFAULT_UNIVERSITY_ACCOUNT, METAMASK_ADDRESS } from '../constants/proj.cnst';
 
 import { StorageService } from './storage.service';
 
@@ -31,17 +33,7 @@ export class Web3Service {
 
   web3Provider: any = null;
 
-  universities: string[] = [
-    'ASU',
-    'CSU',
-    'NYU',
-    'UC',
-    'UIC',
-    'StandFord',
-    'Havard',
-  ];
-
-  counter = 0;
+ 
 
   async connectToMetaMask() {
     let ethereum: any = window['ethereum'];
@@ -101,8 +93,8 @@ export class Web3Service {
 
   async addNewUniversity(uni_name:string, university_id:number) {
     let account =
-      this.storageService.getCookie('account') ||
-      '0xdD2FD4581271e230360230F9337D5c0430Bf44C0';
+      this.storageService.getCookie(METAMASK_ADDRESS) ||
+      DEFAULT_UNIVERSITY_ACCOUNT;
     // let currentUniversity = this.universities[this.counter++];
     // console.log(currentUniversity);
     console.log(this.contract);
@@ -123,38 +115,40 @@ export class Web3Service {
   }
 
   async mintCertificate() {
-    const student_name = 'Tarun Student-Cert2';
-    const program = 'Masters';
-    const issue_date = 'May 2023';
-    const department = 'Computer Science';
-    const contact_number = '7577030093';
-    const cgpa = '3.8';
-    const tenure = '4 years';
-    const _certificate_uri =
-      'https://bafybeieng6jojeuanytmxizqcbj5vng5jw6puuttndt34nsfbuuwsw3fky.ipfs.w3s.link/';
-    const student_address = '0x906eCA9De9EB678b6aa4EB263Bf539102B2d37a1';
-    const university_id = 0;
 
+
+    const university_id = 5;
     let account =
-      this.storageService.getCookie('account') ||
-      '0xdD2FD4581271e230360230F9337D5c0430Bf44C0';
+      this.storageService.getCookie(METAMASK_ADDRESS) ||
+      DEFAULT_UNIVERSITY_ACCOUNT;
     const contract = await this.contract;
 
     console.log(account);
     console.log(contract);
+
+
+    const certificateInfo = {
+      student_info: {
+        studentName: 'Tarun Vihar',
+        studentId: '2023',
+        program: 'Computer Science',
+        department: 'Engineering',
+        studentEmail: 'tarunvihar21@gmail.com',
+        studentWalletAddress: DEFAULT_STUDENT_ACCOUNT,
+      },
+      cgpa: '3.5',
+      tenure: '4 years',
+      graduationDate: '2022-05-31',
+      issueDate: '2022-06-15',
+      remarks: 'Excellent performance',
+      certificateUri: 'https://bafybeieng6jojeuanytmxizqcbj5vng5jw6puuttndt34nsfbuuwsw3fky.ipfs.w3s.link/',
+      certificateId: 0, // This value will be set by the smart contract.
+      university_id: 1, // Replace with the ID of the university that is generating the certificate.
+    };
+
+    
     contract.methods
-      .GENERATE_CERTIFICATE(
-        student_name,
-        program,
-        issue_date,
-        department,
-        contact_number,
-        cgpa,
-        tenure,
-        _certificate_uri,
-        student_address,
-        university_id
-      )
+      .GENERATE_CERTIFICATE( certificateInfo,  university_id)
       .send({ from: account, gas: 1000000 })
       .then(console.log);
   }
