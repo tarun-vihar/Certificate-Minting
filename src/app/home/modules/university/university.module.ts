@@ -11,6 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BulkUploadComponent } from './components/bulk-upload/bulk-upload.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { AgGridModule } from 'ag-grid-angular';
+import {MatButtonModule} from '@angular/material/button';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { AgGridModule } from 'ag-grid-angular';
     ReactiveFormsModule,
     FormsModule,
     MatDialogModule,
-    AgGridModule
+    AgGridModule,
+    MatButtonModule
   ]
 })
 export class UniversityModule { }

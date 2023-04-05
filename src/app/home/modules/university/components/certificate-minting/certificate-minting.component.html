@@ -4,10 +4,10 @@
     <div class="d-flex">
       <ng-container *ngIf="!!showTable">
         <button class="btn btn-link" (click)="backToStudentForm()">Back to Student Form</button>
-        <button class="btn btn-primary mx-2" [disabled]="!enableUpload">Upload</button>
-        <button class="btn btn-secondary" (click)="onSave()">Save</button>
+        <button mat-flat-button color="accent" class="mx-2" [disabled]="!enableUpload">Upload</button>
+        <button mat-flat-button color="primary" (click)="onSave()">Save</button>
       </ng-container>
-      <button class="btn btn-primary" *ngIf="!showTable" (click)="bulkUpload()">Bulk Upload</button>
+      <button mat-flat-button color="primary" *ngIf="!showTable" (click)="bulkUpload()">Bulk Upload</button>
     </div>
   </div>
 
