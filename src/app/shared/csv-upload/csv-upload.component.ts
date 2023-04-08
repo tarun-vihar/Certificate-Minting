@@ -19,7 +19,16 @@ export class CsvUploadComponent implements OnInit {
   columnDefs: any[] = [];
   showTable = false;
   public domLayout: DomLayoutType = 'autoHeight';
-  public defaultColDef: ColDef = {};
+
+  public defaultColDef: any = {
+    resizable: true,
+    wrapHeaderText: true,
+    autoHeaderHeight: true,
+    sortable: true,
+    suppressMenu: true,
+    minWidth: 100 
+  };
+
   @Output() submitFile = new EventEmitter<any>();
 
   constructor() {}
@@ -55,6 +64,7 @@ export class CsvUploadComponent implements OnInit {
         columnDefs.push({
           field: key,
           editable: true,
+          headerTooltip: key,
         });
       });
       this.columnDefs = columnDefs;

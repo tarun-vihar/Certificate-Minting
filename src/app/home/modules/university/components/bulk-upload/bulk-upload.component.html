@@ -1,9 +1,9 @@
-<h2 mat-dialog-title>Bulk upload certificats</h2>
+<h2 mat-dialog-title>Bulk upload certificates</h2>
 <mat-dialog-content>
   <!-- TODO: update message. -->
-  <p>You can also <span class="text-primary" (click)="downloadTemplate()">download</span> the excel with the format required for import</p>
+  <p>You can also <span class="text-primary" role="button" (click)="downloadTemplate()">download</span> the excel with the format required for import</p>
   <input type="file" #file class="d-none" (change)="onFileChange($event)">
-  <div class="file-wrapper" (click)="chooseFile()">
+  <div role="button" class="file-wrapper" (click)="chooseFile()">
     <p class="text-secondary m-0" *ngIf="!selectedFile">
       Choose file and upload
     </p>

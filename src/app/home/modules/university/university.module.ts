@@ -12,6 +12,7 @@ import { BulkUploadComponent } from './components/bulk-upload/bulk-upload.compon
 import {MatDialogModule} from '@angular/material/dialog';
 import { AgGridModule } from 'ag-grid-angular';
 import {MatButtonModule} from '@angular/material/button';
+import { StaffRegistrationComponent } from './components/staff-registration/staff-registration.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import {MatButtonModule} from '@angular/material/button';
     VerifyCertificateComponent,
     UniversityComponent,
     BulkUploadComponent,
+    StaffRegistrationComponent,
   ],
   imports: [
     SharedModule,

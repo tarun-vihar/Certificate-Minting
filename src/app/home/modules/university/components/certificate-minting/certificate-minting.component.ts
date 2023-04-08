@@ -18,7 +18,17 @@ export class CertificateMintingComponent implements OnInit {
   columnDefs: any[] = [];
   rowData: any = [];
   public domLayout: DomLayoutType = 'autoHeight';
-  public defaultColDef: ColDef = {};
+
+  public tooltipShowDelay = 500;
+
+  public defaultColDef: ColDef = {
+    resizable: true,
+    wrapHeaderText: true,
+    autoHeaderHeight: true,
+    sortable: true,
+    suppressMenu: true,
+    minWidth: 100 
+  };
   showTable: boolean = false
 
   enableUpload: boolean = false
@@ -77,6 +87,7 @@ export class CertificateMintingComponent implements OnInit {
         columnDefs.push({
           field: key,
           editable: true,
+          headerTooltip: key,
         });
       });
       this.columnDefs = columnDefs;
