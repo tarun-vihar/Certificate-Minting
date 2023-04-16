@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { AUTH_COOKIE_KEY, MOCK_STUDENT_LOGIN_RESPONSE, MOCK_UNIVERSITY_LOGIN_RESPONSE } from '../constants/proj.cnst';
+import { AUTH_COOKIE_KEY, MOCK_STAFF_LOGIN_RESPONSE, MOCK_STUDENT_LOGIN_RESPONSE, MOCK_UNIVERSITY_LOGIN_RESPONSE } from '../constants/proj.cnst';
 import { StorageService } from './storage.service';
 import { WalletService } from './wallet.service';
 import { Web3Service } from './web3.service';
@@ -80,6 +80,24 @@ export class AuthService {
     return new Promise((resolve, reject) => {
       // Integrate API Call
       const userInfo = MOCK_STUDENT_LOGIN_RESPONSE;
+
+      // Store the logged in user info in cookie.
+      this.storageService.setCookie(AUTH_COOKIE_KEY, {...userInfo, address});
+
+      // return response.
+      resolve(userInfo)
+
+      // Add error handling also along with api integration.
+    })
+  }
+
+  staffLogin() {
+    // Get address.
+    const address = this.walletSrv.getWalletId();
+
+    return new Promise((resolve, reject) => {
+      // Integrate API Call
+      const userInfo = MOCK_STAFF_LOGIN_RESPONSE;
 
       // Store the logged in user info in cookie.
       this.storageService.setCookie(AUTH_COOKIE_KEY, {...userInfo, address});
