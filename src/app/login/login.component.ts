@@ -46,6 +46,22 @@ export class LoginComponent implements OnInit {
         });
   }
 
+  async loginAsStaff() {
+    // same api call with param student
+    this.authService
+      .staffLogin()
+      .then((data) => {
+          if (data) {
+            this.router.navigate(['', 'home', 'university']);
+          }
+        })
+        .catch((error) => {
+          // error
+          console.error(error);
+          alert('login failed');
+        });
+  }
+
   universitySignUp() {
     this.router.navigateByUrl('/auth/sign-up')
   }
