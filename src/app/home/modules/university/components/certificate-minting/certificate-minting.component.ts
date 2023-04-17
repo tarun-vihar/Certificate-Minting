@@ -4,6 +4,7 @@ import { UnivesityService } from '../../service/univesity.service';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import { BulkUploadComponent } from '../bulk-upload/bulk-upload.component';
 import { ColDef, DomLayoutType, FirstDataRenderedEvent } from 'ag-grid-community';
+import { Web3Service } from 'src/app/services/web3.service';
 
 @Component({
   selector: 'app-certificate-minting',
@@ -40,7 +41,8 @@ export class CertificateMintingComponent implements OnInit {
   constructor(
     private universityService: UnivesityService,
     private storageService: StorageService,
-    public dialog: MatDialog
+    public dialog: MatDialog, 
+    private web3Service: Web3Service
   ) { }
 
   selectedOption: string | undefined;
@@ -112,13 +114,21 @@ export class CertificateMintingComponent implements OnInit {
     this.universityService.performCertificateMinting(this.universityId, this.rowData).subscribe({
       next: (res: any) => {
         this.rowData = res.data;
+      
         this.checkAndEnableUpload()
+        let result = this.rowData.map((row: any) => { 
+          return this.web3Service.parseCertificateRequest(row, 5)
+         
+         });
+         console.log("rowData:: ", result);
       }
     })
+
+
   }
 
   checkAndEnableUpload() {
-    this.enableUpload = this.rowData.filter((row: any) => row.remarks !== '').length === 0;
+    this.enableUpload = this.rowData.filter((row: any) => row.error !== '').length === 0;
   }
 
   backToStudentForm() {
