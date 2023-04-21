@@ -179,7 +179,7 @@ export class Web3Service {
       .GET_USER_CERTIFICATES(address)
       .call();
 
-    console.log(certificates);
+    return certificates;
   }
 
 
