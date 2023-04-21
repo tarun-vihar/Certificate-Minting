@@ -1,0 +1,7 @@
+.invalid {
+    border: 1px solid red;
+}
+
+.university-name-dropdown .mat-form-field-wrapper {
+    padding-bottom: 0;
+}

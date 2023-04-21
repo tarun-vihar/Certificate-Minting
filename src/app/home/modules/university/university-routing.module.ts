@@ -4,6 +4,7 @@ import { CertificateMintingComponent } from './components/certificate-minting/ce
 import { StudentRegistrationComponent } from './components/student-registration/student-registration.component';
 import { VerifyCertificateComponent } from './components/verify-certificate/verify-certificate.component';
 import { UniversityComponent } from './university.component';
+import { StaffRegistrationComponent } from './components/staff-registration/staff-registration.component';
 
 const routes: Routes = [
   {
@@ -20,7 +21,7 @@ const routes: Routes = [
       },
       {
         path: 'staff-registration',
-        component: StudentRegistrationComponent,
+        component: StaffRegistrationComponent,
       },
       {
         path: 'verify-certificate',

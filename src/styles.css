@@ -29,3 +29,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .cursor-pointer {
     cursor: pointer;
 }
+
+ /* fix for the double scroll bar in ag-grid */
+.ag-center-cols-viewport::-webkit-scrollbar {
+    height: 0px;
+}

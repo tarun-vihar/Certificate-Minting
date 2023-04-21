@@ -18,4 +18,9 @@ export class UnivesityService {
     return this.http.post(
       `${environment.baseUrl}/register-students?university_id=${university_id}`,value);
   }
+
+  performStaffRegister(university_id: any, value: any) {
+    return this.http.post(
+      `${environment.baseUrl}/register-staff?university_id=${university_id}`,value);
+  }
 }

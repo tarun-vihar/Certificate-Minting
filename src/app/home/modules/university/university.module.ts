@@ -12,6 +12,8 @@ import { BulkUploadComponent } from './components/bulk-upload/bulk-upload.compon
 import {MatDialogModule} from '@angular/material/dialog';
 import { AgGridModule } from 'ag-grid-angular';
 import {MatButtonModule} from '@angular/material/button';
+import { StaffRegistrationComponent } from './components/staff-registration/staff-registration.component';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 
 @NgModule({
@@ -21,6 +23,7 @@ import {MatButtonModule} from '@angular/material/button';
     VerifyCertificateComponent,
     UniversityComponent,
     BulkUploadComponent,
+    StaffRegistrationComponent,
   ],
   imports: [
     SharedModule,
@@ -30,7 +33,8 @@ import {MatButtonModule} from '@angular/material/button';
     FormsModule,
     MatDialogModule,
     AgGridModule,
-    MatButtonModule
+    MatButtonModule,
+    NgxMatSelectSearchModule,
   ]
 })
 export class UniversityModule { }

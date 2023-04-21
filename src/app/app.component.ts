@@ -27,7 +27,7 @@ export class AppComponent {
 
   getAllUniversities(){
 
-    this.w3service.getAllUniversities()
+    this.w3service.addWhiteListAddressForUniversity(5,"0x608cE607FBE38053AA73f218884d6E9dA40F9a1c")
   }
 
   addCertificate(){
