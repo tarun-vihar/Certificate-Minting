@@ -6,19 +6,19 @@ import { AppComponent } from './app.component';
 import { UniversityComponent } from './university/university.component';
 import { StudentComponent } from './student/student.component';
 import { FilterPipe } from './shared/filter.pipe';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatIconModule} from '@angular/material/icon';
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatTabsModule} from '@angular/material/tabs';
-import {MatButtonModule} from '@angular/material/button';
-import {MatInputModule} from '@angular/material/input';
-import {MatListModule} from '@angular/material/list';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatRadioModule} from '@angular/material/radio';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatRadioModule } from '@angular/material/radio';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { SearchBarComponent } from './university/search-bar/search-bar.component';
 import { FileUploadComponent } from './university/file-upload/file-upload.component';
@@ -47,7 +47,8 @@ import { VerifyComponent } from './verify/verify.component';
     CertificateComponent,
     SignupComponent,
     VerifyComponent,
-    ],
+    LoginComponent
+  ],
 
   imports: [
     BrowserModule,
@@ -66,10 +67,10 @@ import { VerifyComponent } from './verify/verify.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatRadioModule,
-    MatSelectModule ,
+    MatSelectModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    // AgGridModule, 
+    // AgGridModule,
     HomeModule
   ],
   providers: [CookieService],
@@ -91,11 +92,11 @@ import { VerifyComponent } from './verify/verify.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatRadioModule,
-    MatSelectModule ,
+    MatSelectModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    // AgGridModule, 
+    // AgGridModule,
     HomeModule
-]
+  ]
 })
-export class AppModule {}
+export class AppModule { }
