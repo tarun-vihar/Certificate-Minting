@@ -37,6 +37,10 @@ export class AppComponent {
   getMyCertificate(){
     this.w3service.getMYCertificate()
   }
+
+  addMultipleCertificates(){
+    this.w3service.generateMultipleCertificates();
+  }
 }
 
 

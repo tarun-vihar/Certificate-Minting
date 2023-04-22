@@ -73,9 +73,9 @@ export class AuthService {
   }
 
 
-  studentLogin() {
+  async studentLogin() {
     // Get address.
-    const address = this.walletSrv.getWalletId();
+    const address = await this.walletSrv.getWalletId();
 
     return new Promise((resolve, reject) => {
       // Integrate API Call
@@ -91,10 +91,10 @@ export class AuthService {
     })
   }
 
-  staffLogin() {
+  async staffLogin() {
     // Get address.
-    const address = this.walletSrv.getWalletId();
-
+    const address = await this.walletSrv.getWalletId();
+    console.log(address);
     return new Promise((resolve, reject) => {
       // Integrate API Call
       const userInfo = MOCK_STAFF_LOGIN_RESPONSE;
