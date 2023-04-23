@@ -13,8 +13,9 @@ const routes: Routes = [
         data: {
           roles: ['university','staff']
         },
-       canActivate: [AuthGuard],
-        loadChildren: () => import('./modules/university/university.module').then( m => m.UniversityModule) 
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./modules/university/university.module').then(m => m.UniversityModule)
+
       },
       {
         path: 'student',
@@ -22,7 +23,15 @@ const routes: Routes = [
           roles: ['student']
         },
         canActivate: [AuthGuard],
-        loadChildren: () => import('./modules/student/student.module').then( m => m.StudentModule) 
+        loadChildren: () => import('./modules/student/student.module').then(m => m.StudentModule)
+      },
+      {
+        path: 'admin',
+        data: {
+          roles: ['admin']
+        },
+        canActivate: [AuthGuard],
+        loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule)
       },
       {
         path: '',
