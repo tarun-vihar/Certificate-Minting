@@ -5,7 +5,7 @@ import Web3 from 'web3';
 import { AbiItem } from 'web3-utils';
 import { ABI_CONFIG } from '../constants/abi.cnst';
 import { BLOCK_CHAIN_ADDRESS } from '../constants/block-chain-config';
-import { DEFAULT_STUDENT_ACCOUNT, DEFAULT_UNIVERSITY_ACCOUNT, METAMASK_ADDRESS } from '../constants/proj.cnst';
+import { DEFAULT_STUDENT_ACCOUNT, DEFAULT_UNIVERSITY_ACCOUNT, METAMASK_ADDRESS, MOCK_CERTIFICATES } from '../constants/proj.cnst';
 
 import { StorageService } from './storage.service';
 import { AnyGridOptions } from 'ag-grid-community';
@@ -180,6 +180,22 @@ export class Web3Service {
       .call();
 
     return certificates;
+  }
+
+  async generateMultipleCertificates() {
+
+
+    const university_id = 5;
+    let account =
+      this.storageService.getCookie(METAMASK_ADDRESS) ||
+      DEFAULT_UNIVERSITY_ACCOUNT;
+    const contract = await this.contract;
+
+    contract.methods
+    .GENERATE_MULTIPLE_CERTIFICATE( MOCK_CERTIFICATES,  university_id)
+    .send({ from: account, gas: 2000000 })
+    .then(console.log);
+
   }
 
 

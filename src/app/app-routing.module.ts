@@ -20,7 +20,9 @@ const routes: Routes = [
   {
     path: 'home',
     data: {
-      roles: ['university', 'student', 'admin']
+
+      roles: ['university', 'student', 'admin', 'staff']
+
     },
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
     canActivate: [AuthGuard],
