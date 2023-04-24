@@ -13,7 +13,7 @@ const routes: Routes = [
         data: {
           roles: ['university','staff']
         },
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
         loadChildren: () => import('./modules/university/university.module').then(m => m.UniversityModule)
 
       },
@@ -22,7 +22,7 @@ const routes: Routes = [
         data: {
           roles: ['student']
         },
-        canActivate: [AuthGuard],
+        // canActivate: [AuthGuard],
         loadChildren: () => import('./modules/student/student.module').then(m => m.StudentModule)
       },
       {

@@ -5,3 +5,9 @@
 .university-name-dropdown .mat-form-field-wrapper {
     padding-bottom: 0;
 }
+
+.certificate-details {
+    display: flex;
+    gap: 1rem;
+    margin: 0 0 0.5rem 2rem;
+}
