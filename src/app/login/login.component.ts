@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DEFAULT_ROUTE_FOR_ROLE } from '../constants/proj.cnst';
 import { AuthService } from '../services/auth.service';
@@ -10,18 +11,32 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(
-    private authService: AuthService, 
-    private router: Router
-  ) {}
+  loginForm: FormGroup = new FormGroup({
+    username: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required])
+  })
 
-  ngOnInit(): void {}
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) { }
+
+  ngOnInit(): void { }
+
+  loginAsAdmin() {
+    if (this.loginForm.valid) {
+      this.authService.adminLogin(this.loginForm.value)
+        .then(data => {
+          this.router.navigate(DEFAULT_ROUTE_FOR_ROLE.admin)
+        })
+    }
+  }
 
   loginAsUniversity() {
     this.authService
-    .universityLogin()
-    .then((data) => {
-      if (data) {
+      .universityLogin()
+      .then((data) => {
+        if (data) {
           this.router.navigate(DEFAULT_ROUTE_FOR_ROLE.university);
         }
       })
@@ -36,14 +51,14 @@ export class LoginComponent implements OnInit {
     this.authService
       .studentLogin()
       .then((data) => {
-          if (data) {
-            this.router.navigate(DEFAULT_ROUTE_FOR_ROLE.student);
-          }
-        })
-        .catch((error) => {
-          // error
-          alert('login failed');
-        });
+        if (data) {
+          this.router.navigate(DEFAULT_ROUTE_FOR_ROLE.student);
+        }
+      })
+      .catch((error) => {
+        // error
+        alert('login failed');
+      });
   }
 
   async loginAsStaff() {
@@ -51,15 +66,15 @@ export class LoginComponent implements OnInit {
     this.authService
       .staffLogin()
       .then((data) => {
-          if (data) {
-            this.router.navigate(['', 'home', 'university']);
-          }
-        })
-        .catch((error) => {
-          // error
-          console.error(error);
-          alert('login failed');
-        });
+        if (data) {
+          this.router.navigate(['', 'home', 'university']);
+        }
+      })
+      .catch((error) => {
+        // error
+        console.error(error);
+        alert('login failed');
+      });
   }
 
   universitySignUp() {

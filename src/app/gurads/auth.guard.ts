@@ -55,6 +55,7 @@ export class AuthGuard implements CanActivate {
 
     const loggedInUserInfo = this.authSrv.getLoggedInUserInfo()
     
+    console.log(loggedInUserInfo)
     // If role is allowed to view the page then load the page.
     if(roles.indexOf(loggedInUserInfo.role) !== -1) {
       return true;
@@ -63,6 +64,7 @@ export class AuthGuard implements CanActivate {
     // get the default landing page for role
     const defaultRouteForRole = (DEFAULT_ROUTE_FOR_ROLE as any)[loggedInUserInfo.role] || ['', 'home', 'user']
 
+    console.log(defaultRouteForRole)
     // redirect to default landing page for role.
     this.router.navigate(defaultRouteForRole)
     return false;

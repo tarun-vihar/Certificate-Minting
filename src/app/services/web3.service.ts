@@ -5,9 +5,10 @@ import Web3 from 'web3';
 import { AbiItem } from 'web3-utils';
 import { ABI_CONFIG } from '../constants/abi.cnst';
 import { BLOCK_CHAIN_ADDRESS } from '../constants/block-chain-config';
-import { DEFAULT_STUDENT_ACCOUNT, DEFAULT_UNIVERSITY_ACCOUNT, METAMASK_ADDRESS } from '../constants/proj.cnst';
+import { DEFAULT_STUDENT_ACCOUNT, DEFAULT_UNIVERSITY_ACCOUNT, METAMASK_ADDRESS, MOCK_CERTIFICATES } from '../constants/proj.cnst';
 
 import { StorageService } from './storage.service';
+import { AnyGridOptions } from 'ag-grid-community';
 
 declare let window: any;
 
@@ -106,9 +107,11 @@ export class Web3Service {
       .then(console.log);
   }
 
-  addWhiteListAddressForUniversity(id: number, accountAddress: string) {
-    let account = '0xdD2FD4581271e230360230F9337D5c0430Bf44C0';
-    this.contract.methods
+  async addWhiteListAddressForUniversity(id: number, accountAddress: string) {
+    let account = '0x59f3f2bdD8FE34a81C56502F0dCbB3eE4d016f33';
+    const contract = await this.contract;
+    console.log(contract)
+    contract.methods
       .WHITELIST_ADDRESS_FOR_UNIVERSITY(id, accountAddress)
       .send({ from: account, gas: 1000000 })
       .then(console.log);
@@ -129,9 +132,9 @@ export class Web3Service {
 
     const certificateInfo = {
       student_info: {
-        studentName: 'Tarun Vihar',
+        studentName: 'Tarun Vihar - 2023',
         studentId: '2023',
-        program: 'Computer Science',
+        program: 'Computer Science (CECS)',
         department: 'Engineering',
         studentEmail: 'tarunvihar21@gmail.com',
         studentWalletAddress: DEFAULT_STUDENT_ACCOUNT,
@@ -176,6 +179,51 @@ export class Web3Service {
       .GET_USER_CERTIFICATES(address)
       .call();
 
-    console.log(certificates);
+    return certificates;
   }
+
+  async generateMultipleCertificates() {
+
+
+    const university_id = 5;
+    let account =
+      this.storageService.getCookie(METAMASK_ADDRESS) ||
+      DEFAULT_UNIVERSITY_ACCOUNT;
+    const contract = await this.contract;
+
+    contract.methods
+    .GENERATE_MULTIPLE_CERTIFICATE( MOCK_CERTIFICATES,  university_id)
+    .send({ from: account, gas: 2000000 })
+    .then(console.log);
+
+  }
+
+
+   parseCertificateRequest(request: any, universityId: number): any {
+    console.log(request)
+    const { studentName, studentId, program, department, studentEmail, studentWalletAddress } = request;
+    const { cgpa, tenure, graduationDate, issueDate, remarks ='', certificateUri = '', certificateId } = request;
+    
+    const student_info = {
+      studentName,
+      studentId,
+      program,
+      department,
+      studentEmail,
+      studentWalletAddress: studentWalletAddress,
+    };
+    
+    return {
+      student_info,
+      cgpa,
+      tenure,
+      graduationDate,
+      issueDate,
+      remarks,
+      certificateUri,
+      certificateId,
+      university_id: universityId,
+    };
+  }
+  
 }

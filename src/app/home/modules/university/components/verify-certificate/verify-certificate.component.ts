@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ReplaySubject, Subject, take, takeUntil } from 'rxjs';
 import { MOCK_UNIVERSITIES_LIST } from 'src/app/constants/proj.cnst';
+import { Web3Service } from 'src/app/services/web3.service';
 
 export interface University {
   universityCode: string;
@@ -41,7 +42,7 @@ export class VerifyCertificateComponent implements OnInit, OnDestroy {
   public _onDestroy = new Subject<void>();
 
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,private web3Service: Web3Service) { }
 
   ngOnInit(): void {
 
@@ -84,9 +85,20 @@ export class VerifyCertificateComponent implements OnInit, OnDestroy {
     );
   }
 
-  verifyCertificate() {
+  async verifyCertificate() {
     console.log('certificate details: ', this.certificateDetailsForm.value);
-    this.certificateDetailsForm.reset();
+
+    let certificates:any = await this.web3Service.getMYCertificate()
+
+    console.log('certiifcates: ', certificates);
+    let filterCertificate = certificates.filter((certificate:any) => {
+      if( certificate.certificateId === this.certificateDetailsForm.value.certificateId){
+        console.log('certificate: ', certificate);
+      }
+    })
+
+    console.log(filterCertificate)
+    // // this.certificateDetailsForm.reset();
 
     // api call to check it is valid certificate or not
   }

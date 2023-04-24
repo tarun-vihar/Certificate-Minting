@@ -1,0 +1,13 @@
+<div class="container">
+  <ul class="list-group mt-3">
+    <li class="list-group-item" *ngFor="let university of universityRequests">
+      <div class="d-flex justify-content-between">
+        <h2>{{ university.name }}</h2>
+        <div class="d-flex">
+          <button mat-flat-button color="primary" class="mx-2" (click)="approve()">Approve</button>
+          <button mat-flat-button color="accent" (click)="reject()">Reject</button>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
