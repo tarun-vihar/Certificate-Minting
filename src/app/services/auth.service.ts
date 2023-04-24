@@ -34,14 +34,14 @@ export class AuthService {
     // {username: '<>', password: '<>'}
 
     // Get address.
-    const address = await this.walletSrv.getWalletId();
+    //const address = await this.walletSrv.getWalletId();
 
     return new Promise((resolve, reject) => {
       // Integrate API Call
       const userInfo = MOCK_ADMIN_LOGIN_RESPONSE;
 
       // Store the logged in user info in cookie.
-      this.storageService.setCookie(AUTH_COOKIE_KEY, { ...userInfo, address });
+      this.storageService.setCookie(AUTH_COOKIE_KEY, { ...userInfo });
 
       // return response.
       resolve(userInfo)
@@ -59,15 +59,13 @@ export class AuthService {
     return new Promise((resolve, reject) => {
 
       // Integrate API Call
-      const userInfo = MOCK_UNIVERSITY_LOGIN_RESPONSE;
+     // const userInfo = MOCK_UNIVERSITY_LOGIN_RESPONSE;
 
       // Store the logged in user info in cookie.
-      this.storageService.setCookie(AUTH_COOKIE_KEY, { ...userInfo, address });
+     // this.storageService.setCookie(AUTH_COOKIE_KEY, { ...userInfo, address });
 
       // return response.
-      resolve(userInfo)
-
-      return
+  
 
       this.http
         .post(`${environment.baseUrl}/university/authenticate`, {
@@ -81,7 +79,7 @@ export class AuthService {
             console.log(userData);
             if (!!userData) {
               userData.role = 'university';
-              this.storageService.setCookie(AUTH_COOKIE_KEY, userData);
+              this.storageService.setCookie(AUTH_COOKIE_KEY, { ...userData, address });
             }
 
             resolve(data)
