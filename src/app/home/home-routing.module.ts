@@ -11,7 +11,7 @@ const routes: Routes = [
       {
         path: 'university',
         data: {
-          roles: ['university']
+          roles: ['university', 'staff']
         },
         canActivate: [AuthGuard],
         loadChildren: () => import('./modules/university/university.module').then( m => m.UniversityModule) 

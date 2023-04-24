@@ -9,6 +9,7 @@ export const DEFAULT_STUDENT_ACCOUNT = "0x906eCA9De9EB678b6aa4EB263Bf539102B2d37
 export const DEFAULT_ROUTE_FOR_ROLE: any = {
     university: ['', 'home', 'university'],
     student: ['', 'home', 'student'],
+    staff: ['', 'home', 'university']
 }
 
 export const NAVIGATION = [
