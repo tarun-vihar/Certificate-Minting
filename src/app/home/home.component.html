@@ -9,7 +9,7 @@
                 </li>
             </ul>
             <div class="d-flex align-items-center">
-                <p class="text-white m-0 mx-2">Welcome {{ loggedInuserInfo?.role == 'university' ?  loggedInuserInfo?.universityName : loggedInuserInfo?.studentName}}</p>
+                <p class="text-white m-0 mx-2">Welcome {{ loggedInuserInfo?.role == 'university' ?  loggedInuserInfo?.universityName : loggedInuserInfo?.name}}</p>
                 <button class="btn btn-light btn-sm" (click)="logout()">Logout</button>
             </div>
         </div>

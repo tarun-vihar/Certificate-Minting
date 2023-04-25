@@ -50,24 +50,6 @@ const routes: Routes = [
       },
     ],
   },
-  // {
-  //   path: 'university',
-  //   component: UniversityComponent,
-  //   children: [
-  //     {
-  //       path: 'search',
-  //       component: SearchBarComponent,
-  //     },
-  //   ],
-  // },
-  // {
-  //   path: 'student',
-  //   component: StudentComponent,
-  // },
-  // {
-  //   path: 'signup',
-  //   component: SignupComponent,
-  // },
   {
     path: 'verify',
     component: VerifyComponent,

@@ -86,7 +86,7 @@ export const MOCK_CERTIFICATES = [
   {
     student_info: {
       studentName: 'Tarun Vihar - 2023',
-      studentId: '2023',
+      studentId: '2024',
       program: 'Computer Science (CECS)',
       department: 'Engineering',
       studentEmail: 'tarunvihar21@gmail.com',
@@ -98,8 +98,8 @@ export const MOCK_CERTIFICATES = [
     issueDate: '2022-06-15',
     remarks: 'Excellent performance',
     certificateUri: 'https://bafybeieng6jojeuanytmxizqcbj5vng5jw6puuttndt34nsfbuuwsw3fky.ipfs.w3s.link/',
-    certificateId: 0, // This value will be set by the smart contract.
-    university_id: 1, // Replace with the ID of the university that is generating the certificate.
+    certificateId: 1, // This value will be set by the smart contract.
+    university_id: 30110, // Replace with the ID of the university that is generating the certificate.
   },
 
 
