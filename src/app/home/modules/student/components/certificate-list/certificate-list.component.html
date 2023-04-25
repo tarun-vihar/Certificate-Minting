@@ -1,1 +1,75 @@
-<p>certificate-list works!</p>
+<h1 class="mt-3 ta-c">My Certificate Details</h1>
+<div *ngFor="let certificateDetails of certificatesList" class=" container mt-3">
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title><div>
+            <label for="certificate-id">Certificate id: </label>
+            <span id="certificate-id">
+              {{ certificateDetails?.certificateId }}</span>
+            
+          </div></mat-card-title>        
+      </mat-card-header>
+      <mat-card-content>
+        <div class="certificate-details">
+          <label for="student-name">Student Name: </label>
+          <span id="student-name">
+            {{ certificateDetails?.student_info?.studentName }}</span
+          >
+        </div>
+        <div class="certificate-details">
+          <label for="student-id">Student Id: </label>
+          <span id="student-id">
+            {{ certificateDetails?.student_info?.studentId }}</span
+          >
+        </div>
+        <div class="certificate-details">
+          <label for="student-program">Program: </label>
+          <span id="student-program">
+            {{ certificateDetails?.student_info?.program }}</span
+          >
+        </div>
+        <div class="certificate-details">
+          <label for="student-department">Department: </label>
+          <span id="student-department">
+            {{ certificateDetails?.student_info?.department }}</span
+          >
+        </div>
+        <div class="certificate-details">
+          <label for="student-email">Student Email: </label>
+          <span id="student-email">
+            {{ certificateDetails?.student_info?.studentEmail }}</span
+          >
+        </div>
+        <div class="certificate-details">
+          <label for="student-cgpa">CGPA: </label>
+          <span id="student-cgpa"> {{ certificateDetails?.cgpa }}</span>
+        </div>
+        <div class="certificate-details">
+          <label for="student-tenure">Tenure: </label>
+          <span id="student-tenure"> {{ certificateDetails?.tenure }}</span>
+        </div>
+        <div class="certificate-details">
+          <label for="student-grad-date">Graduation Date: </label>
+          <span id="student-grad-date">
+            {{ certificateDetails?.graduationDate }}</span
+          >
+        </div>
+        <div class="certificate-details">
+          <label for="student-cert-issue-date">Certificate Issue Date: </label>
+          <span id="student-cert-issue-date">
+            {{ certificateDetails?.issueDate }}</span
+          >
+        </div>
+        <div class="certificate-details">
+          <label for="student-remarks">Remarks: </label>
+          <span id="student-remarks"> {{ certificateDetails?.remarks }}</span>
+        </div>
+        <div class="certificate-details">
+          <label for="student-university-id">Univeristy Id: </label>
+          <span id="student-university-id">
+            {{ certificateDetails?.university_id }}</span
+          >
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
