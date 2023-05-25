@@ -26,10 +26,10 @@ export class StudentRegistrationComponent implements OnInit {
   
   submitStudents(event: any) {
 
-    const userData = JSON.parse(this.storageService.getCookie(AUTH_COOKIE_KEY));
-    console.log(userData, 'userData')
-    const university_id = userData.id;
-    this.universityService.performStudentRegister(university_id, event).subscribe({
+    // const userData = JSON.parse(this.storageService.getCookie(AUTH_COOKIE_KEY));
+    // console.log(userData, 'userData')
+    // const university_id = userData.id;
+    this.universityService.performStudentRegister(3, event).subscribe({
       next: (data) => {
         console.log(data, 'data here')
       }

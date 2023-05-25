@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
+import { Web3Service } from 'src/app/services/web3.service';
 
 @Component({
   selector: 'app-university-signup-requests',
@@ -11,7 +12,8 @@ export class UniversitySignupRequestsComponent implements OnInit {
   universityRequests: any[] = []
 
   constructor(
-    private apiSrv: ApiService
+    private apiSrv: ApiService,
+    private web3Service: Web3Service
   ) { }
 
   ngOnInit(): void {
@@ -19,31 +21,53 @@ export class UniversitySignupRequestsComponent implements OnInit {
   }
 
   getUniversityRequests() {
-    // API integration
-    // this.apiSrv.getUniversityRequests()
-    //   .subscribe((res: any) => {
-    //     console.log("university requests:: ", res)
-    //     this.universityRequests = res.data
-    //   }, err => {
-    //     this.universityRequests = []
-    //   })
+    //API integration
+    this.apiSrv.getAllUnapprovedUniversities()
+      .subscribe((res: any) => {
+        console.log("university requests:: ", res)
+        this.universityRequests = res
+      }, err => {
+        this.universityRequests = []
+      })
 
 
-    this.universityRequests = [
-      {
-        name: 'University 1',
+   
+  }
+
+  approve(univeristy: any) {
+    console.log("approve: ", univeristy)
+    this.apiSrv.validateUniversity(univeristy.id, "approve").subscribe({
+      next: (data:any) => {  
+        console.log("api success: ", data);
+        this.web3Service.addNewUniversity(univeristy.universityName, univeristy.id)
+   
       },
-      { name: 'University 2' },
-      { name: 'University 3' },
-      { name: 'University 4' }
-    ]
+      error: (error) => {
+       console.log("api error: ", error);
+
+      },
+      complete: () => {
+        console.log("university signup call completed");
+      },
+    });
   }
 
-  approve() {
-    // TODO: integrate approve api.
-  }
 
-  reject() {
+  reject(univeristy: any) {
+    this.apiSrv.validateUniversity(univeristy.id, "reject").subscribe({
+      next: (data:any) => {  
+        console.log("api success: ", data);
+        this.web3Service.addNewUniversity(univeristy.universityName, univeristy.id)
+   
+      },
+      error: (error) => {
+       console.log("api error: ", error);
+
+      },
+      complete: () => {
+        console.log("university signup call completed");
+      },
+    });
     // TODO: integrate reject api.
   }
 

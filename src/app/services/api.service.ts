@@ -87,9 +87,17 @@ export class ApiService {
     })
   }
 
-  getUniversityRequests() {
-    return this.http.get(`${environment.baseUrl}/university/requests`)
+  getAllUnapprovedUniversities() {
+    return this.http.get(`${environment.baseUrl}/university/get-all-unapproved`)
   }
 
-
+  validateUniversity(universityId: number, action: string) {
+    return this.http.post(`${environment.baseUrl}/university/signup`,{},
+     {
+      params: {
+        id: universityId,
+        action: action
+      }
+    })
+  }
 }

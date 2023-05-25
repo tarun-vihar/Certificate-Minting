@@ -5,6 +5,7 @@ import { Subscription } from "rxjs";
 import { ApiService } from "src/app/services/api.service";
 import { FileUploadService } from "src/app/services/file-upload.service";
 import { StorageService } from "src/app/services/storage.service";
+import { Web3Service } from "src/app/services/web3.service";
 
 @Component({
   selector: "app-student-details",
@@ -24,7 +25,8 @@ export class StudentDetailsComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private storageService: StorageService,
     private apiService: ApiService,
-    private fileUploadService: FileUploadService
+    private fileUploadService: FileUploadService,
+    private web3Service: Web3Service
   ) {
 
   }
@@ -74,7 +76,8 @@ export class StudentDetailsComponent implements OnInit, OnDestroy {
     const studentId = event.target.value;
 
     const userData = this.storageService.getCookie('USER_DATA');
-    const universityId = userData.id;
+    console.log(userData, 'userData')
+    const universityId = 3
 
     this.studentDetailsSubscription = this.apiService.getStudentDetails(studentId, universityId).subscribe({
       next: (data: any) =>{
@@ -105,7 +108,9 @@ export class StudentDetailsComponent implements OnInit, OnDestroy {
         console.log("shortlink: ", CID);
         this.setFormControlValue({ certificateUri: `https://${CID}.ipfs.w3s.link` });
         console.warn(this.profileForm.value);
+        this.web3Service.mintCertificate();
       }
     });
+
   }
 }

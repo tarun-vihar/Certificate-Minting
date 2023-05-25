@@ -5,7 +5,7 @@ import Web3 from 'web3';
 import { AbiItem } from 'web3-utils';
 import { ABI_CONFIG } from '../constants/abi.cnst';
 import { BLOCK_CHAIN_ADDRESS } from '../constants/block-chain-config';
-import { DEFAULT_STUDENT_ACCOUNT, DEFAULT_UNIVERSITY_ACCOUNT, METAMASK_ADDRESS, MOCK_CERTIFICATES } from '../constants/proj.cnst';
+import { DEFAULT_STUDENT_ACCOUNT, DEFAULT_STUDENT_ACCOUNT_2, DEFAULT_UNIVERSITY_ACCOUNT, METAMASK_ADDRESS, MOCK_CERTIFICATES } from '../constants/proj.cnst';
 
 import { StorageService } from './storage.service';
 import { AnyGridOptions } from 'ag-grid-community';
@@ -130,25 +130,26 @@ export class Web3Service {
     console.log(contract);
 
 
-    const certificateInfo = {
-      student_info: {
-        studentName: 'Tarun Vihar - 2023',
-        studentId: '2023',
-        program: 'Computer Science (CECS)',
-        department: 'Engineering',
-        studentEmail: 'tarunvihar21@gmail.com',
-        studentWalletAddress: DEFAULT_STUDENT_ACCOUNT,
-      },
-      cgpa: '3.5',
-      tenure: '4 years',
-      graduationDate: '2022-05-31',
-      issueDate: '2022-06-15',
-      remarks: 'Excellent performance',
-      certificateUri: 'https://bafybeieng6jojeuanytmxizqcbj5vng5jw6puuttndt34nsfbuuwsw3fky.ipfs.w3s.link/',
-      certificateId: 0, // This value will be set by the smart contract.
-      university_id: 1, // Replace with the ID of the university that is generating the certificate.
-    };
+    // const certificateInfo = {
+    //   student_info: {
+    //     studentName: 'Tarun Vihar - 2023',
+    //     studentId: '2023',
+    //     program: 'Computer Science (CECS)',
+    //     department: 'Engineering',
+    //     studentEmail: 'tarunvihar21@gmail.com',
+    //     studentWalletAddress: DEFAULT_STUDENT_ACCOUNT,
+    //   },
+    //   cgpa: '3.5',
+    //   tenure: '4 years',
+    //   graduationDate: '2022-05-31',
+    //   issueDate: '2022-06-15',
+    //   remarks: 'Excellent performance',
+    //   certificateUri: 'https://bafybeieng6jojeuanytmxizqcbj5vng5jw6puuttndt34nsfbuuwsw3fky.ipfs.w3s.link/',
+    //   certificateId: 0, // This value will be set by the smart contract.
+    //   university_id: 1, // Replace with the ID of the university that is generating the certificate.
+    // };
 
+    const certificateInfo = MOCK_CERTIFICATES[1];
     
     contract.methods
       .GENERATE_CERTIFICATE( certificateInfo,  university_id)
@@ -175,6 +176,7 @@ export class Web3Service {
 
     console.log(contract);
     const address = '0x906eCA9De9EB678b6aa4EB263Bf539102B2d37a1';
+    // const address = DEFAULT_STUDENT_ACCOUNT_2;
     const certificates = await contract.methods
       .GET_USER_CERTIFICATES(address)
       .call();

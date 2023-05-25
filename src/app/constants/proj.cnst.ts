@@ -66,17 +66,17 @@ export const MOCK_CERTIFICATES = [
 
   {
     student_info: {
-      studentName: 'Bulk Certificate - Tarun 1',
+      studentName: 'Tarun Vihar ',
       studentId: '2023',
-      program: 'Computer Science (CECS)',
+      program: 'Computer Science (Master Science)',
       department: 'Engineering',
       studentEmail: 'tarunvihar21@gmail.com',
       studentWalletAddress: DEFAULT_STUDENT_ACCOUNT,
     },
     cgpa: '3.5',
     tenure: '2 years',
-    graduationDate: '2022-05-31',
-    issueDate: '2022-06-15',
+    graduationDate: '2023-05-31',
+    issueDate: '2023-06-15',
     remarks: 'Excellent performance',
     certificateUri: 'https://bafybeieng6jojeuanytmxizqcbj5vng5jw6puuttndt34nsfbuuwsw3fky.ipfs.w3s.link/',
     certificateId: 0, // This value will be set by the smart contract.
@@ -85,21 +85,21 @@ export const MOCK_CERTIFICATES = [
 
   {
     student_info: {
-      studentName: 'Tarun Vihar - 2023',
-      studentId: '2024',
-      program: 'Computer Science (CECS)',
+      studentName: 'Tarun Vihar',
+      studentId: '202559883',
+      program: 'Computer Science (Bachelor of Science)',
       department: 'Engineering',
       studentEmail: 'tarunvihar21@gmail.com',
       studentWalletAddress: DEFAULT_STUDENT_ACCOUNT_2,
     },
-    cgpa: '3.5',
-    tenure: '2 years',
-    graduationDate: '2022-05-31',
-    issueDate: '2022-06-15',
+    cgpa: '3.8',
+    tenure: '5 years',
+    graduationDate: '2019-05-31',
+    issueDate: '2019-06-15',
     remarks: 'Excellent performance',
     certificateUri: 'https://bafybeieng6jojeuanytmxizqcbj5vng5jw6puuttndt34nsfbuuwsw3fky.ipfs.w3s.link/',
     certificateId: 1, // This value will be set by the smart contract.
-    university_id: 30110, // Replace with the ID of the university that is generating the certificate.
+    university_id: 5, // Replace with the ID of the university that is generating the certificate.
   },
 
 
